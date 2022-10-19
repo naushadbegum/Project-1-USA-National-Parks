@@ -17,5 +17,11 @@ window.addEventListener("DOMContentLoaded", async function () {
         accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
     }).addTo(map);
 
-    //////////////////////////////////////////////////////////////////////////
+    let response = await axios.get("https://developer.nps.gov/api/v1/parks?api_key=a9cQTv8P7L1oKzHLwGQ3aZe82umGBfhcbiowErxT");
+    for(let each of response.data.data){
+        let lat = each.latitude;
+        let lng = each.longitude;
+        let marker = L.marker([lat, lng]);
+        marker.addTo(map)
+    }
 })
