@@ -4,6 +4,14 @@ window.addEventListener("DOMContentLoaded", async function () {
     // this function is to setup the application
     function init() {
         let map = initMap();
+
+        document.querySelector("#btnSearch").addEventListener("click", async function () {
+            let searchTerms = document.querySelector("#searchTerms").value;
+            let boundaries = map.getBounds();
+            let center = boundaries.getCenter();
+            let results = await search("AZ", searchTerms, 10);
+            console.log(results);
+        });
     }
     init();
 })
@@ -33,7 +41,3 @@ function initMap() {
 //     let marker = L.marker([lat, lng]);
 //     marker.addTo(map)
 // }
-// let searchBtn = document.querySelector("#btnSearch");
-// searchBtn.addEventListener("click", async function () {
-//     // alert("click me");
-// })
