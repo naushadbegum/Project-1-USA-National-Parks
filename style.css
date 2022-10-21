@@ -1,12 +1,13 @@
 #map {
     height: 100vh;
+    position: relative;
 }
 
 /* #map-container {
     position: relative;
-}
+} */
 
-#search-container {
+/* .search-container {
     position: absolute;
     z-index: 314159;
     min-width: 300px;
@@ -16,8 +17,8 @@
     background-color: rgba(255,255,255,0.5);
     padding-top: 25px;
     padding-left: 25px;
-}
-#results {
+} */
+/* #results {
     max-height: 300px;
     overflow-y:scroll;
 } */
