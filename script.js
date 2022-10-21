@@ -9,8 +9,15 @@ window.addEventListener("DOMContentLoaded", async function () {
             let searchTerms = document.querySelector("#searchTerms").value;
             let boundaries = map.getBounds();
             let center = boundaries.getCenter();
-            let results = await search("AZ", searchTerms, 10);
-            console.log(results);
+            let searchResults = await search("NY", searchTerms, 50);
+
+            for (let r of searchResults.data) {
+                let lat = r.latitude;
+                let lng = r.longitude;
+                console.log(lat, lng);
+                let marker = L.marker([lat, lng]);
+                marker.addTo(map)
+            }
         });
     }
     init();
@@ -33,11 +40,3 @@ function initMap() {
     }).addTo(map);
     return map; //return map as result of the function
 }
-// // create marker
-// let response = await axios.get("https://developer.nps.gov/api/v1/parks?limit=468&sort=&api_key=a9cQTv8P7L1oKzHLwGQ3aZe82umGBfhcbiowErxT");
-// for (let each of response.data.data) {
-//     let lat = each.latitude;
-//     let lng = each.longitude;
-//     let marker = L.marker([lat, lng]);
-//     marker.addTo(map)
-// }
