@@ -16,12 +16,22 @@ window.addEventListener("DOMContentLoaded", async function () {
             let center = boundaries.getCenter();
             let searchResults = await search("AZ", searchTerms, 50);
 
+            let searchResultElement = document.querySelector("#results");
+
             for (let r of searchResults.data) {
+                //display marker
                 let lat = r.latitude;
                 let lng = r.longitude;
                 console.log(lat, lng);
-                let marker = L.marker([lat, lng]);
-                marker.addTo(searchResultLayer);
+                let marker = L.marker([lat, lng]).addTo(searchResultLayer);
+                marker.bindPopup(`<h1>${r.fullName}</h1>`)
+
+                // add to the search results
+                let resultElement = document.createElement("div");
+                resultElement.innerText = r.fullName;
+
+                searchResultElement.appendChild(resultElement);
+
             }
         });
     }
