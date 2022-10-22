@@ -29,6 +29,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                 // add to the search results
                 let resultElement = document.createElement("div");
                 resultElement.innerText = r.fullName;
+                resultElement.classList.add("search-result");
 
                 searchResultElement.appendChild(resultElement);
 

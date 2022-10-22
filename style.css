@@ -17,7 +17,10 @@
     padding-top: 25px;
     padding-left: 25px;
 }
-/* #results {
+#results {
     max-height: 300px;
-    overflow-y:scroll;
-} */
+    overflow-y: scroll;
+}
+.search-result{
+    margin: 5px;
+}
