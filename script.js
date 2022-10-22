@@ -5,18 +5,23 @@ window.addEventListener("DOMContentLoaded", async function () {
     function init() {
         let map = initMap();
 
+        let searchResultLayer = L.layerGroup();
+        searchResultLayer.addTo(map);
+
         document.querySelector("#btnSearch").addEventListener("click", async function () {
+            
+            searchResultLayer.clearLayers();
             let searchTerms = document.querySelector("#searchTerms").value;
             let boundaries = map.getBounds();
             let center = boundaries.getCenter();
-            let searchResults = await search("NY", searchTerms, 50);
+            let searchResults = await search("AZ", searchTerms, 50);
 
             for (let r of searchResults.data) {
                 let lat = r.latitude;
                 let lng = r.longitude;
                 console.log(lat, lng);
                 let marker = L.marker([lat, lng]);
-                marker.addTo(map)
+                marker.addTo(searchResultLayer);
             }
         });
     }
