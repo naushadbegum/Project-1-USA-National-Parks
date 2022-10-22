@@ -7,9 +7,19 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         let searchResultLayer = L.layerGroup();
         searchResultLayer.addTo(map);
+// mobile first 
+        document.querySelector("#btnToggleSearch").addEventListener("click", function () {
+            let searchContainerElement = document.querySelector("#search-container");
+            let currentDisplay = searchContainerElement.style.display;
+            if (!currentDisplay || currentDisplay == 'none') {
+                searchContainerElement.style.display = "block";
+            } else {
+                searchContainerElement.style.display = "none";
+            }
+        })
 
         document.querySelector("#btnSearch").addEventListener("click", async function () {
-            
+
             searchResultLayer.clearLayers();
             let searchTerms = document.querySelector("#searchTerms").value;
             let boundaries = map.getBounds();
@@ -30,6 +40,12 @@ window.addEventListener("DOMContentLoaded", async function () {
                 let resultElement = document.createElement("div");
                 resultElement.innerText = r.fullName;
                 resultElement.classList.add("search-result");
+
+                // when click on the result, the name appears in alert
+                resultElement.addEventListener("click", function () {
+                    map.flyTo([lat, lng], 16);
+                    marker.openPopup(); // flys and shows the name of the park
+                })
 
                 searchResultElement.appendChild(resultElement);
 
