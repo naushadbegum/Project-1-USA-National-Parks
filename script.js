@@ -33,7 +33,12 @@ window.addEventListener("DOMContentLoaded", async function () {
                 let lat = r.latitude;
                 let lng = r.longitude;
                 console.log(lat, lng);
-                let marker = L.marker([lat, lng]).addTo(searchResultLayer);
+                let greenIcon = L.icon({
+                    iconUrl: 'leaf-green.png',
+                    iconSize:     [38, 95], // size of the icon
+                    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                });
+                let marker= L.marker([lat, lng], {icon: greenIcon}).addTo(searchResultLayer);
                 marker.bindPopup(`<h1>${r.fullName}</h1>`)
 
                 // add to the search results
@@ -55,6 +60,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     init();
 })
 
+
 function initMap() {
     // create a map object
     let map = L.map('map');
@@ -70,5 +76,6 @@ function initMap() {
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
     }).addTo(map);
+
     return map; //return map as result of the function
 }
