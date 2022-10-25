@@ -20,11 +20,11 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         document.querySelector("#btnSearch").addEventListener("click", async function () {
 
-            searchResultLayer.clearLayers();
+            searchResultLayer.clearLayers(); // previous results gets deleted
             let searchTerms = document.querySelector("#searchTerms").value;
             let boundaries = map.getBounds();
             let center = boundaries.getCenter();
-            let searchResults = await search("AZ", searchTerms, 50);
+            let searchResults = await searchParks("AZ", searchTerms, 50);
 
             let searchResultElement = document.querySelector("#results");
 
@@ -59,7 +59,6 @@ window.addEventListener("DOMContentLoaded", async function () {
     }
     init();
 })
-
 
 function initMap() {
     // create a map object

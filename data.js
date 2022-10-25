@@ -3,7 +3,7 @@
 const API_BASE_URL = "https://developer.nps.gov/api/v1/";
 const API_KEY = "a9cQTv8P7L1oKzHLwGQ3aZe82umGBfhcbiowErxT";
 
-async function search(stateCode, query, limit){
+async function searchParks(stateCode, query, limit){
     let response = await axios.get(API_BASE_URL + "parks", {
         "params": {
             "stateCode": stateCode,
@@ -14,3 +14,15 @@ async function search(stateCode, query, limit){
     });
     return response.data;
 }
+// async function searchCampgrounds(stateCode, query, limit){
+//     let response = await axios.get(API_BASE_URL + "campgrounds", {
+//         "params": {
+//             "stateCode": stateCode,
+//             "q": query,
+//             "limit": limit,
+//             "api_key": API_KEY
+//         }
+//     });
+//     response.data
+// }
+

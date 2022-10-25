@@ -42,3 +42,15 @@
     top: 10px;
     z-index:30000;
 }
+
+.btn-group {
+    position: absolute;
+    z-index: 40000;
+    min-height: 25px;
+    top: 100%;
+    left: 15%;
+    background-color: rgba(255,255,255,0.5);
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-bottom: 10px;
+}
