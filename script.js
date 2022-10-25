@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         let searchResultLayer = L.layerGroup();
         searchResultLayer.addTo(map);
-// mobile first 
+        // mobile first 
         document.querySelector("#btnToggleSearch").addEventListener("click", function () {
             let searchContainerElement = document.querySelector("#search-container");
             let currentDisplay = searchContainerElement.style.display;
@@ -16,7 +16,14 @@ window.addEventListener("DOMContentLoaded", async function () {
             } else {
                 searchContainerElement.style.display = "none";
             }
-        })
+        });
+       async function states(){
+            let stateCode = axios.get(us-states.json);
+            let stateName = document.createElement(".form-select");
+            let value = stateName.value;
+            let text = stateName.text;
+            console.log(stateCode.data);
+        }
 
         document.querySelector("#btnSearch").addEventListener("click", async function () {
 
@@ -24,7 +31,7 @@ window.addEventListener("DOMContentLoaded", async function () {
             let searchTerms = document.querySelector("#searchTerms").value;
             let boundaries = map.getBounds();
             let center = boundaries.getCenter();
-            let searchResults = await searchParks("AZ", searchTerms, 50);
+            let searchResults = await searchParks(searchTerms, stateCode);
 
             let searchResultElement = document.querySelector("#results");
 
@@ -35,10 +42,10 @@ window.addEventListener("DOMContentLoaded", async function () {
                 console.log(lat, lng);
                 let greenIcon = L.icon({
                     iconUrl: 'leaf-green.png',
-                    iconSize:     [38, 95], // size of the icon
-                    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                    iconSize: [38, 95], // size of the icon
+                    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
                 });
-                let marker= L.marker([lat, lng], {icon: greenIcon}).addTo(searchResultLayer);
+                let marker = L.marker([lat, lng], { icon: greenIcon }).addTo(searchResultLayer);
                 marker.bindPopup(`<h1>${r.fullName}</h1>`)
 
                 // add to the search results
@@ -46,10 +53,10 @@ window.addEventListener("DOMContentLoaded", async function () {
                 resultElement.innerText = r.fullName;
                 resultElement.classList.add("search-result");
 
-                // when click on the result, the name appears in alert
+                // flys and shows the name of the park
                 resultElement.addEventListener("click", function () {
                     map.flyTo([lat, lng], 16);
-                    marker.openPopup(); // flys and shows the name of the park
+                    marker.openPopup();
                 })
 
                 searchResultElement.appendChild(resultElement);
