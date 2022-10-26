@@ -17,13 +17,6 @@ window.addEventListener("DOMContentLoaded", async function () {
                 searchContainerElement.style.display = "none";
             }
         });
-       async function states(){
-            let stateCode = axios.get(us-states.json);
-            let stateName = document.createElement(".form-select");
-            let value = stateName.value;
-            let text = stateName.text;
-            console.log(stateCode.data);
-        }
 
         document.querySelector("#btnSearch").addEventListener("click", async function () {
 
@@ -31,7 +24,10 @@ window.addEventListener("DOMContentLoaded", async function () {
             let searchTerms = document.querySelector("#searchTerms").value;
             let boundaries = map.getBounds();
             let center = boundaries.getCenter();
-            let searchResults = await searchParks(searchTerms, stateCode);
+            let dropdownElement = document.getElementById(".form-select");
+            let selectedState = dropdownElement.value;
+            let stateCode = dropdownElement.options[dropdownElement.selectedIndex].text;
+            let searchResults = await searchParks(searchTerms, "AZ");
 
             let searchResultElement = document.querySelector("#results");
 
@@ -63,6 +59,32 @@ window.addEventListener("DOMContentLoaded", async function () {
 
             }
         });
+
+
+(async function searchStates(){ 
+let stateOptionValues = await axios.get("us-states.json"); // let response = await axios.get("us-states.json");
+let features = stateOptionValues.data.features; // let data = response.data;
+
+let stateCodes = [];
+let stateNames = [];
+for (each of features){
+    let stateCode = each.id;
+    stateCodes.push(stateCode);
+    
+    let stateName = each.properties.name;
+    stateNames.push(stateName);
+}
+
+let selectElement = document.getElementById("states-dropdown");
+for (let i=0; i< stateNames.length; i++){
+    let opt = stateNames[i];
+    let stateOptions = document.createElement("option");
+    stateOptions.textContent = opt;
+    stateOptions.value = opt;
+    selectElement.appendChild(stateOptions);
+}
+    })();
+
     }
     init();
 })

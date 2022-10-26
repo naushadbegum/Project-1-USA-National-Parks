@@ -31,103 +31,30 @@
             <input type="text" id="searchTerms" />
             <button id="btnSearch">Search</button>
             <div id="results"></div>
-            <div class="dropdown-group">
-                <div id="selectedState"></div>
-                <select class="form-select" multiple aria-label="multiple select example">
-                    <option selected>Choose a state</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-
-                <!-- <script type="text/javascript" src="us-states.json">
-                    function load() {
-                        let stateCode = JSON.parse(data.features.id);
-                        let stateName = JSON.parse(data.features.properties.name);
-                        // alert(mydata.length);
-                        let text = "<select>"
-                        for (let x in mydata) {
-                            text += "<option>" + stateName + "</option>";
-                        }
-                        text += "</select>"
-                        document.getElementById("selectedState").innerHTML = text;
-                    }
-                </script> -->
-
-                <!-- <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" value="AL">Alabama</a></li>
-                    <li><a class="dropdown-item" href="#" value="AK">Alaska</a></li>
-                    <li><a class="dropdown-item" href="#" value="AZ">Arizona</a></li>
-                    <li><a class="dropdown-item" href="#" value="AR">Arkansas</a></li>
-                    <li><a class="dropdown-item" href="#" value="CA">California</a></li>
-                    <li><a class="dropdown-item" href="#" value="CO">Colorado</a></li>
-                    <li><a class="dropdown-item" href="#" value="CT">Connecticut</a></li>
-                    <li><a class="dropdown-item" href="#" value="DE">Delaware</a></li>
-                    <li><a class="dropdown-item" href="#" value="FL">Florida</a></li>
-                    <li><a class="dropdown-item" href="#" value="GA">Georgia</a></li>
-                    <li><a class="dropdown-item" href="#" value="HI">Hawaii</a></li>
-                    <li><a class="dropdown-item" href="#" value="ID">Idaho</a></li>
-                    <li><a class="dropdown-item" href="#" value="IL">Illinois</a></li>
-                    <li><a class="dropdown-item" href="#" value="IN">Indiana</a></li>
-                    <li><a class="dropdown-item" href="#" value="IA">Iowa</a></li>
-                    <li><a class="dropdown-item" href="#" value="KS">Kansas</a></li>
-                    <li><a class="dropdown-item" href="#" value="KY">Kentucky</a></li>
-                    <li><a class="dropdown-item" href="#" value="LA">Louisiana</a></li>
-                    <li><a class="dropdown-item" href="#" value="ME">Maine</a></li>
-                    <li><a class="dropdown-item" href="#" value="MD">Maryland</a></li>
-                    <li><a class="dropdown-item" href="#" value="MA">Massachussets</a></li>
-                    <li><a class="dropdown-item" href="#" value="MI">Michigan</a></li>
-                    <li><a class="dropdown-item" href="#" value="MN">Minnesota</a></li>
-                    <li><a class="dropdown-item" href="#" value="MS">Mississippi</a></li>
-                    <li><a class="dropdown-item" href="#" value="MO">Missouri</a></li>
-                    <li><a class="dropdown-item" href="#" value="MT">Montana</a></li>
-                    <li><a class="dropdown-item" href="#" value="NE">Nebraska</a></li>
-                    <li><a class="dropdown-item" href="#" value="NV">Nevada</a></li>
-                    <li><a class="dropdown-item" href="#" value="NH">New Hampshire</a></li>
-                    <li><a class="dropdown-item" href="#" value="NJ">New Jersey</a></li>
-                    <li><a class="dropdown-item" href="#" value="NM">New Mexico</a></li>
-                    <li><a class="dropdown-item" href="#" value="NY">New York</a></li>
-                    <li><a class="dropdown-item" href="#" value="NC">North Carolina</a></li>
-                    <li><a class="dropdown-item" href="#" value="ND">North Dakota</a></li>
-                    <li><a class="dropdown-item" href="#" value="OH">Ohio</a></li>
-                    <li><a class="dropdown-item" href="#" value="OK">Oklahoma</a></li>
-                    <li><a class="dropdown-item" href="#" value="OR">Oregon</a></li>
-                    <li><a class="dropdown-item" href="#" value="PA">Pennsylvania</a></li>
-                    <li><a class="dropdown-item" href="#" value="RI">Rhode Island</a></li>
-                    <li><a class="dropdown-item" href="#" value="SC">South Carolina</a></li>
-                    <li><a class="dropdown-item" href="#" value="SD">South Dakota</a></li>
-                    <li><a class="dropdown-item" href="#" value="TN">Tennessee</a></li>
-                    <li><a class="dropdown-item" href="#" value="TX">Texas</a></li>
-                    <li><a class="dropdown-item" href="#" value="UT">Utah</a></li>
-                    <li><a class="dropdown-item" href="#" value="VT">Vermont</a></li>
-                    <li><a class="dropdown-item" href="#" value="VA">Virginia</a></li>
-                    <li><a class="dropdown-item" href="#" value="WA">Washington</a></li>
-                    <li><a class="dropdown-item" href="#" value="WV">West Virginia</a></li>
-                    <li><a class="dropdown-item" href="#" value="WI">Wisconsin</a></li>
-                    <li><a class="dropdown-item" href="#" value="WY">Wyoming</a></li>
-                </ul> -->
-            </div>
+            <select class="form-select" id="states-dropdown" aria-label="Default select example">
+        </select>
         </div>
+    </div>
 
 
-        <!-- bootscrap bundle with popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-        <!-- axios-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"
-            integrity="sha512-bHeT+z+n8rh9CKrSrbyfbINxu7gsBmSHlDCb3gUF1BjmjDzKhoKspyB71k0CIRBSjE5IVQiMMVBgCWjF60qsvA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <!-- Leaflet-->
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-            crossorigin=""></script>
-        <!-- Leaflet Clustering-->
-        <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
-        <!-- our own data -->
-        <script src="data.js"></script>
-        <!-- finally script.js -->
-        <script src="script.js"></script>
+    <!-- bootscrap bundle with popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- axios-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"
+        integrity="sha512-bHeT+z+n8rh9CKrSrbyfbINxu7gsBmSHlDCb3gUF1BjmjDzKhoKspyB71k0CIRBSjE5IVQiMMVBgCWjF60qsvA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Leaflet-->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <!-- Leaflet Clustering-->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
+    <!-- our own data -->
+    <script src="data.js"></script>
+    <!-- finally script.js -->
+    <script src="script.js"></script>
 </body>
 
 </html>
