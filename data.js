@@ -7,19 +7,19 @@ async function searchParks(query, stateCode=""){
     let response = await axios.get(API_BASE_URL + "parks", {
         "params": {
             "stateCode": stateCode,
-            "q": query,
             "limit": 1000,
+            "q": query,
             "api_key": API_KEY
         }
     });
     return response.data;
 }
-// async function searchCampgrounds(stateCode, query, limit){
+// async function searchCampgrounds(query, stateCode=""){
 //     let response = await axios.get(API_BASE_URL + "campgrounds", {
 //         "params": {
 //             "stateCode": stateCode,
 //             "q": query,
-//             "limit": limit,
+//             "limit": 1000,
 //             "api_key": API_KEY
 //         }
 //     });

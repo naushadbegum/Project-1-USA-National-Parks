@@ -24,10 +24,9 @@ window.addEventListener("DOMContentLoaded", async function () {
             let searchTerms = document.querySelector("#searchTerms").value;
             let boundaries = map.getBounds();
             let center = boundaries.getCenter();
-            let dropdownElement = document.getElementById(".form-select");
-            let selectedState = dropdownElement.value;
-            let stateCode = dropdownElement.options[dropdownElement.selectedIndex].text;
-            let searchResults = await searchParks(searchTerms, "AZ");
+            let stateCode = document.querySelector("#states-dropdown").value
+            // console.log(stateCode);
+            let searchResults = await searchParks(searchTerms, stateCode);
 
             let searchResultElement = document.querySelector("#results");
 
@@ -60,7 +59,7 @@ window.addEventListener("DOMContentLoaded", async function () {
             }
         });
 
-
+// for displaying the names of the states
 (async function searchStates(){ 
 let stateOptionValues = await axios.get("us-states.json"); // let response = await axios.get("us-states.json");
 let features = stateOptionValues.data.features; // let data = response.data;
@@ -70,7 +69,7 @@ let stateNames = [];
 for (each of features){
     let stateCode = each.id;
     stateCodes.push(stateCode);
-    
+
     let stateName = each.properties.name;
     stateNames.push(stateName);
 }
@@ -79,12 +78,18 @@ let selectElement = document.getElementById("states-dropdown");
 for (let i=0; i< stateNames.length; i++){
     let opt = stateNames[i];
     let stateOptions = document.createElement("option");
-    stateOptions.textContent = opt;
-    stateOptions.value = opt;
+    stateOptions.text = opt;
+    stateOptions.value = stateCodes[i];
     selectElement.appendChild(stateOptions);
 }
-    })();
+let stateCode = document.querySelector("#states-dropdown").value;
+})();
 
+
+let checkboxElement = document.getElementById("campgroundsCheck");
+(async function (){
+let searchCampgrounds = await searchCampgrounds(searchTerms, stateCode);
+    })
     }
     init();
 })
