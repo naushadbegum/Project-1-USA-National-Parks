@@ -3,7 +3,7 @@
 const API_BASE_URL = "https://developer.nps.gov/api/v1/";
 const API_KEY = "a9cQTv8P7L1oKzHLwGQ3aZe82umGBfhcbiowErxT";
 
-async function searchParks(query, stateCode=""){
+async function searchParks(stateCode, query=""){
     let response = await axios.get(API_BASE_URL + "parks", {
         "params": {
             "stateCode": stateCode,
@@ -16,7 +16,7 @@ async function searchParks(query, stateCode=""){
 }
 
 
-async function searchCampgrounds(stateCode=""){
+async function searchCampgrounds(stateCode){
     let response = await axios.get(API_BASE_URL + "campgrounds", {
         "params": {
             "stateCode": stateCode,
@@ -24,7 +24,20 @@ async function searchCampgrounds(stateCode=""){
             "api_key": API_KEY
         }
     });
-    response.data
+    return response.data;
+    console.log(response.data);
+}
+
+async function searchParkinglots(stateCode){
+    let response = await axios.get(API_BASE_URL + "parkinglots", {
+        "params": {
+            "stateCode": stateCode,
+            "limit": 1000,
+            "api_key": API_KEY
+        }
+    });
+    return response.data;
+    console.log(response.data);
 }
 
 // // second API-weather
