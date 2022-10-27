@@ -14,15 +14,33 @@ async function searchParks(query, stateCode=""){
     });
     return response.data;
 }
-// async function searchCampgrounds(query, stateCode=""){
-//     let response = await axios.get(API_BASE_URL + "campgrounds", {
-//         "params": {
-//             "stateCode": stateCode,
-//             "q": query,
-//             "limit": 1000,
-//             "api_key": API_KEY
-//         }
-//     });
-//     response.data
-// }
 
+
+async function searchCampgrounds(stateCode=""){
+    let response = await axios.get(API_BASE_URL + "campgrounds", {
+        "params": {
+            "stateCode": stateCode,
+            "limit": 1000,
+            "api_key": API_KEY
+        }
+    });
+    response.data
+}
+
+// // second API-weather
+// const WEATHER_API_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+// const WEATHER_API_KEY = "0678d0efe2e6677d40a9cc5e43d90249";
+
+// let exclude = 'minutely,hourly,daily,alerts';
+
+// async function weather(lat,lon) {
+
+// let url = WEATHER_API_BASE_URL + `?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`;
+// let response = await axios.get(url);
+
+// return (response.data);
+
+// };
+
+// let weatherSearch = weather(1.3521,103.8198);
+// console.log(weatherSearch);

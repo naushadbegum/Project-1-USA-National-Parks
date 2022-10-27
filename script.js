@@ -25,7 +25,6 @@ window.addEventListener("DOMContentLoaded", async function () {
             let boundaries = map.getBounds();
             let center = boundaries.getCenter();
             let stateCode = document.querySelector("#states-dropdown").value
-            // console.log(stateCode);
             let searchResults = await searchParks(searchTerms, stateCode);
 
             let searchResultElement = document.querySelector("#results");
@@ -59,37 +58,53 @@ window.addEventListener("DOMContentLoaded", async function () {
             }
         });
 
-// for displaying the names of the states
-(async function searchStates(){ 
-let stateOptionValues = await axios.get("us-states.json"); // let response = await axios.get("us-states.json");
-let features = stateOptionValues.data.features; // let data = response.data;
+        // for displaying the names of the states
+        (async function searchStates() {
+            let stateOptionValues = await axios.get("us-states.json"); // let response = await axios.get("us-states.json");
+            let features = stateOptionValues.data.features; // let data = response.data;
 
-let stateCodes = [];
-let stateNames = [];
-for (each of features){
-    let stateCode = each.id;
-    stateCodes.push(stateCode);
+            let stateCodes = [];
+            let stateNames = [];
+            for (each of features) {
+                let stateCode = each.id;
+                stateCodes.push(stateCode);
 
-    let stateName = each.properties.name;
-    stateNames.push(stateName);
-}
+                let stateName = each.properties.name;
+                stateNames.push(stateName);
+            }
 
-let selectElement = document.getElementById("states-dropdown");
-for (let i=0; i< stateNames.length; i++){
-    let opt = stateNames[i];
-    let stateOptions = document.createElement("option");
-    stateOptions.text = opt;
-    stateOptions.value = stateCodes[i];
-    selectElement.appendChild(stateOptions);
-}
-let stateCode = document.querySelector("#states-dropdown").value;
-})();
+            let selectElement = document.getElementById("states-dropdown");
+            for (let i = 0; i < stateNames.length; i++) {
+                let opt = stateNames[i];
+                let stateOptions = document.createElement("option");
+                stateOptions.text = opt;
+                stateOptions.value = stateCodes[i];
+                selectElement.appendChild(stateOptions);
+            }
+            let stateCode = document.querySelector("#states-dropdown").value;
+        })();
 
 
-let checkboxElement = document.getElementById("campgroundsCheck");
-(async function (){
-let searchCampgrounds = await searchCampgrounds(searchTerms, stateCode);
-    })
+        let checkboxElement = document.querySelector("#campgroundsCheck");
+        checkboxElement.addEventListener("click", async function () {
+            let selectedCampgrounds = "";
+            let searchCampgrounds = await searchCampgrounds(stateCode);
+            for (let c of searchCampgrounds) {
+                if (c.checked) {
+selectedCampgrounds = c.value;
+                }
+            }
+        })
+
+        // let searchCampgrounds = await searchCampgrounds(stateCode);
+        // for (let c of searchCampgrounds){
+        //     if (c.checked){
+        //         let lat = c.data.latitude;
+        //         let lng = c.data.longitude;
+        //         console.log(lat,lng);
+        //     }
+        // }
+
     }
     init();
 })
