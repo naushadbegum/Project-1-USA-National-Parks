@@ -40,7 +40,34 @@ async function searchParkinglots(stateCode){
     console.log(response.data);
 }
 
-// // second API-weather
+const FOURSQUARE_API_BASE_URL = "https://api.foursquare.com/v3/places/";
+const FOURSQUARE_API_KEY = "fsq3lGzITu/HhGgCQuJNFdxn1/uAei20lEU0p/skhYAGIEQ=";
+
+const headers = {
+    "Accept": "application/json",  
+    "Authorization": FOURSQUARE_API_KEY
+}
+
+async function search(ll) {
+   
+    let url = FOURSQUARE_API_BASE_URL + "search";
+    let response = await axios.get(url,{
+        "headers": headers,
+        "params":{
+            "ll": ll,
+            "radius": 10000, 
+            "category": 17057,  
+            "limit":50,
+            "v": '20210903'
+        }
+    });
+
+    return response.data; 
+    console.log(response.data);
+}
+
+
+// // API-weather
 // const WEATHER_API_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 // const WEATHER_API_KEY = "0678d0efe2e6677d40a9cc5e43d90249";
 

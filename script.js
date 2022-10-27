@@ -22,10 +22,10 @@ window.addEventListener("DOMContentLoaded", async function () {
 
             searchResultLayer.clearLayers(); // previous results gets deleted
             let query = document.querySelector("#searchTerms").value;
-            let boundaries = map.getBounds();
-            let center = boundaries.getCenter();
+            // let boundaries = map.getBounds();
+            // let center = boundaries.getCenter();
             let stateCode = document.querySelector("#states-dropdown").value;
-            let searchResults = await searchParks(query, stateCode);
+            let searchResults = await searchParks(stateCode, query);
 
             let searchResultElement = document.querySelector("#results");
 
@@ -84,7 +84,7 @@ window.addEventListener("DOMContentLoaded", async function () {
             let stateCode = document.querySelector("#states-dropdown").value;
         })();
 
-// create a button for campgrounds
+        // create a button for campgrounds
         let campgroundsElement = document.querySelector("#campgrounds");
         campgroundsElement.addEventListener("click", async function () {
             // alert("hi");
@@ -95,35 +95,80 @@ window.addEventListener("DOMContentLoaded", async function () {
                 //display campground icon
                 let lat = c.latitude;
                 let lng = c.longitude;
-                console.log(lat,lng);
+                console.log(lat, lng);
                 let redIcon = L.icon({
                     iconUrl: 'leaf-red.png',
-                    iconSize:     [38, 95], // size of the icon
-                    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                    iconSize: [38, 95], // size of the icon
+                    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
                 });
-                L.marker([lat, lng], {icon: redIcon}).addTo(map).bindPopup(`<h1>${c.name}<h1>`);
-                }
-            })
-// create a radio button for parkinglots
+                L.marker([lat, lng], { icon: redIcon }).addTo(map).bindPopup(`<h1>${c.name}<h1>`);
+            }
+        })
+        // create a radio button for parkinglots
 
-let radioParkinglotsElement = document.querySelector("#parkinglots");
-radioParkinglotsElement.addEventListener("click", async function(){
-    let selectedParkinglots = "";
-    let stateCode = document.querySelector("#states-dropdown").value;
-    let usParkinglots = await searchParkinglots(stateCode);
-    for (let p of usParkinglots.data) {
-        // display parkinglots icon
-        let lat = p.latitude;
-        let lng = p.longitude;
-        console.log(lat,lng);
-        let orangeIcon = L.icon({
-            iconUrl: 'leaf-orange.png',
-            iconSize:     [38, 95], // size of the icon
-            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-        });
-        L.marker([lat, lng], {icon: orangeIcon}).addTo(map).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
+        let radioParkinglotsElement = document.querySelector("#parkinglots");
+        radioParkinglotsElement.addEventListener("click", async function () {
+            let selectedParkinglots = "";
+            let stateCode = document.querySelector("#states-dropdown").value;
+            let usParkinglots = await searchParkinglots(stateCode);
+            for (let p of usParkinglots.data) {
+                // display parkinglots icon
+                let lat = p.latitude;
+                let lng = p.longitude;
+                console.log(lat, lng);
+                let orangeIcon = L.icon({
+                    iconUrl: 'leaf-orange.png',
+                    iconSize: [38, 95], // size of the icon
+                    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+                });
+                L.marker([lat, lng], { icon: orangeIcon }).addTo(map).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
+            }
+        })
+        // adding foursquare to search for supermarkets to buy essentials before going campsites
+        // let checkSupermarketsElement = document.querySelector("#supermarketsCheck");
+        // let selectedSupermarkets = "";
+        // checkSupermarketsElement.addEventListener("change", async function () {
+        //     for (let check of checkSupermarketsElement) {
+        //         if (check.checked) {
+        //             let boundaries = map.getBounds();
+        //             let center = boundaries.getCenter();
+        //             let latlng = center.lat + "," + center.lng;
+        //             let supermarketsResults = await search(latlng, 10000);
+        //             let lat = s.geocodes.main.latitude;
+        //             let lng = s.geocodes.main.longitude;
+
+        //         } 
+        //     }
+        //      console.log(lat, lng);
+
+        //     })
+
+        let checkbox = document.querySelector("#supermarketsCheck");
+        checkbox.addEventListener('click', async function () {
+            // console.log(response.data);
+            // console.dir(checkbox);
+            if (checkbox.checked){
+                let boundaries = map.getBounds();
+                let center = boundaries.getCenter();
+                let latlng = center.lat + "," + center.lng;
+                let supermarketsResults = await search(latlng);
+                for (let each of supermarketsResults.results) {
+                    // console.log(each);
+                    let lat = each.geocodes.main.latitude;
+                    let lng = each.geocodes.main.longitude;
+                    let redIcon = L.icon({
+                        iconUrl: 'leaf-red.png',
+                        iconSize: [38, 95], // size of the icon
+                        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+                    });
+                    L.marker([lat, lng], { icon: redIcon }).addTo(map).bindPopup(`<h1>${each.name}<h1>`);
+            }
+
+            
+    
+
         }
-    })
+    });
     }
     init();
 })
