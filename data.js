@@ -68,19 +68,19 @@ async function search(ll) {
 
 
 // // API-weather
-// const WEATHER_API_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
-// const WEATHER_API_KEY = "0678d0efe2e6677d40a9cc5e43d90249";
+const WEATHER_API_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+const WEATHER_API_KEY = "0678d0efe2e6677d40a9cc5e43d90249";
 
-// let exclude = 'minutely,hourly,daily,alerts';
+let exclude = 'minutely,hourly,daily,alerts';
 
-// async function weather(lat,lon) {
+async function weather(lat,lon) {
 
-// let url = WEATHER_API_BASE_URL + `?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`;
-// let response = await axios.get(url);
+let url = WEATHER_API_BASE_URL + `?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`;
+let response = await axios.get(url);
 
-// return (response.data);
+return (response.data);
 
-// };
+};
 
-// let weatherSearch = weather(1.3521,103.8198);
-// console.log(weatherSearch);
+let weatherSearch = weather(39.82, -98.58);
+console.log(weatherSearch);

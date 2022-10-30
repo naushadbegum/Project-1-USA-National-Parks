@@ -5,8 +5,10 @@ window.addEventListener("DOMContentLoaded", async function () {
     function init() {
         let map = initMap();
 
-        let searchResultLayer = L.layerGroup();
-        searchResultLayer.addTo(map);
+        // let searchResultLayer = L.layerGroup();
+        // searchResultLayer.addTo(map);
+        let markerClusterLayer = L.markerClusterGroup(); // <-- only available because we included the marker cluster JS file
+        markerClusterLayer.addTo(map);
         // mobile first 
         document.querySelector("#btnToggleSearch").addEventListener("click", function () {
             let searchContainerElement = document.querySelector("#search-container");
@@ -20,10 +22,8 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         document.querySelector("#btnSearch").addEventListener("click", async function () {
 
-            searchResultLayer.clearLayers(); // previous results gets deleted
+            markerClusterLayer.clearLayers(); // previous results gets deleted
             let query = document.querySelector("#searchTerms").value;
-            // let boundaries = map.getBounds();
-            // let center = boundaries.getCenter();
             let stateCode = document.querySelector("#states-dropdown").value;
             let searchResults = await searchParks(stateCode, query);
 
@@ -39,7 +39,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconSize: [38, 95], // size of the icon
                     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
                 });
-                let marker = L.marker([lat, lng], { icon: greenIcon }).addTo(searchResultLayer);
+                let marker = L.marker([lat, lng], { icon: greenIcon }).addTo(markerClusterLayer);
                 marker.bindPopup(`<h1>${r.fullName}</h1>`)
 
                 // add to the search results
@@ -101,7 +101,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconSize: [38, 95], // size of the icon
                     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
                 });
-                L.marker([lat, lng], { icon: redIcon }).addTo(map).bindPopup(`<h1>${c.name}<h1>`);
+                L.marker([lat, lng], { icon: redIcon }).addTo(markerClusterLayer).bindPopup(`<h1>${c.name}<h1>`);
             }
         })
         // create a radio button for parkinglots
@@ -121,7 +121,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconSize: [38, 95], // size of the icon
                     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
                 });
-                L.marker([lat, lng], { icon: orangeIcon }).addTo(map).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
+                L.marker([lat, lng], { icon: orangeIcon }).addTo(markerClusterLayer).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
             }
         })
         // adding foursquare to search for supermarkets to buy essentials before going campsites
@@ -161,12 +161,8 @@ window.addEventListener("DOMContentLoaded", async function () {
                         iconSize: [38, 95], // size of the icon
                         iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
                     });
-                    L.marker([lat, lng], { icon: redIcon }).addTo(map).bindPopup(`<h1>${each.name}<h1>`);
+                    L.marker([lat, lng], { icon: redIcon }).addTo(markerClusterLayer).bindPopup(`<h1>${each.name}<h1>`);
             }
-
-            
-    
-
         }
     });
     }
@@ -188,6 +184,7 @@ function initMap() {
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
     }).addTo(map);
+    L.geoJson(statesData).addTo(map);
 
     return map; //return map as result of the function
 }

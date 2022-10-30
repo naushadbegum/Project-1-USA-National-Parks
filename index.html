@@ -5,65 +5,212 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- leaflet css -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin="" />
+    <title>Adventure Awaits!</title>
 
-    <!-- leaflet marker clustering css-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
-    <!-- bootscrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        /* body,
+        html {
+            height: 100%;
+        } */
 
-    <!-- my own css-->
-    <link rel="stylesheet" href="style.css" />
-</head>
+        /* /* .bg {
+            /* The image used */
+        background-image: url("moabnps.jpg");
+
+        /* Full height */
+        height: 100vh;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        padding: 1px;
+        */
+
+        /* }
+
+
+
+        .logo {
+            z-index: 700;
+            position: fixed;
+            top: 0;
+            width: 100px;
+            left: 15px;
+            margin-left: 50px;
+        }
+        * {box-sizing: border-box;} */
+        */ .img-comp-container {
+            position: relative;
+            height: 100vh;
+            /*should be the same height as the images*/
+        }
+
+        .img-comp-img {
+            position: absolute;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .img-comp-img img {
+            display: block;
+            height: 100vh;
+            vertical-align: middle;
+        }
+
+        .img-comp-slider {
+            position: absolute;
+            z-index: 9;
+            cursor: ew-resize;
+            /*set the appearance of the slider:*/
+            width: 40px;
+            height: 40px;
+            background-color: #69443C;
+            opacity: 0.7;
+            border-radius: 50%;
+        }
+
+        .button-explore {
+            /* position: absolute;
+            z-index: 314459;
+            top: 2%;
+            left: 15%;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding-top: 25px;
+            padding-left: 25px;
+            padding-bottom: 10px; */
+            margin: 0;
+            position: absolute;
+            z-index: 314459;
+            padding: 0;
+            border: none;
+            font: inherit;
+            color: inherit;
+            background-color: transparent;
+            cursor: pointer;
+            top: 70%;
+            left: 40%;
+        }
+
+        .button-explore:focus {
+            outline: 0;
+        }
+
+        .button-explore {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-size: 50px;
+            color: #69443C;
+        }
+
+        .button-explore {
+            padding: 15px 125px;
+        }
+
+        .button-explore {
+            background-color: white;
+            border-radius: 100px;
+        }
+    </style>
+
+    <script>
+        function myFunction() {
+            location.replace("https://naushadbegum.github.io/Project_1_US_National_Park/")
+        }
+        function initComparisons() {
+            var x, i;
+            /*find all elements with an "overlay" class:*/
+            x = document.getElementsByClassName("img-comp-overlay");
+            for (i = 0; i < x.length; i++) {
+                /*once for each "overlay" element:
+                pass the "overlay" element as a parameter when executing the compareImages function:*/
+                compareImages(x[i]);
+            }
+            function compareImages(img) {
+                var slider, img, clicked = 0, w, h;
+                /*get the width and height of the img element*/
+                w = img.offsetWidth;
+                h = img.offsetHeight;
+                /*set the width of the img element to 50%:*/
+                img.style.width = (w / 2) + "px";
+                /*create slider:*/
+                slider = document.createElement("DIV");
+                slider.setAttribute("class", "img-comp-slider");
+                /*insert slider*/
+                img.parentElement.insertBefore(slider, img);
+                /*position the slider in the middle:*/
+                slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+                slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+                /*execute a function when the mouse button is pressed:*/
+                slider.addEventListener("mousedown", slideReady);
+                /*and another function when the mouse button is released:*/
+                window.addEventListener("mouseup", slideFinish);
+                /*or touched (for touch screens:*/
+                slider.addEventListener("touchstart", slideReady);
+                /*and released (for touch screens:*/
+                window.addEventListener("touchend", slideFinish);
+                function slideReady(e) {
+                    /*prevent any other actions that may occur when moving over the image:*/
+                    e.preventDefault();
+                    /*the slider is now clicked and ready to move:*/
+                    clicked = 1;
+                    /*execute a function when the slider is moved:*/
+                    window.addEventListener("mousemove", slideMove);
+                    window.addEventListener("touchmove", slideMove);
+                }
+                function slideFinish() {
+                    /*the slider is no longer clicked:*/
+                    clicked = 0;
+                }
+                function slideMove(e) {
+                    var pos;
+                    /*if the slider is no longer clicked, exit this function:*/
+                    if (clicked == 0) return false;
+                    /*get the cursor's x position:*/
+                    pos = getCursorPos(e)
+                    /*prevent the slider from being positioned outside the image:*/
+                    if (pos < 0) pos = 0;
+                    if (pos > w) pos = w;
+                    /*execute a function that will resize the overlay image according to the cursor:*/
+                    slide(pos);
+                }
+                function getCursorPos(e) {
+                    var a, x = 0;
+                    e = (e.changedTouches) ? e.changedTouches[0] : e;
+                    /*get the x positions of the image:*/
+                    a = img.getBoundingClientRect();
+                    /*calculate the cursor's x coordinate, relative to the image:*/
+                    x = e.pageX - a.left;
+                    /*consider any page scrolling:*/
+                    x = x - window.pageXOffset;
+                    return x;
+                }
+                function slide(x) {
+                    /*resize the image:*/
+                    img.style.width = x + "px";
+                    /*position the slider:*/
+                    slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+                }
+            }
+        }
+    </script>
 
 <body>
-    <!-- i need to position absolute and it will be relative to the map-container -->
-    <div id="map-container">
-        <button id="btnToggleSearch">Toggle Search</button>
-        <div id="map"></div>
-        <div id="search-container">
-            <input type="text" id="searchTerms" />
-            <button id="btnSearch">Search</button>
-            <div id="results"></div>
-            <select class="form-select" id="states-dropdown" aria-label="Default select example">
-        </select>
-        <button id="campgrounds">Campgrounds</button>
-        <input type="radio" name="parkinglots" value="parkinglots" class="parkinglots" id="parkinglots"/>
-    <label>Parkinglots</label>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="checkbox" id="supermarketsCheck">
-            <label class="form-check-label" for="flexCheckIndeterminate">
-              Supermarkets
-            </label>
-          </div>
+    <div class="img-comp-container">
+        <div class="img-comp-img">
+            <img src="bmap.png" width="1847" height="1143">
         </div>
+        <div class="img-comp-img img-comp-overlay">
+            <img src="moabnps.jpg" width="1847" height="1143">
+        </div>
+        <button onclick="myFunction()" class="button-explore">EXPLORE</button>
     </div>
+    <script>
+        /*Execute a function that will execute an image compare function for each element with the img-comp-overlay class:*/
+        initComparisons();
+    </script>
 
-
-    <!-- bootscrap bundle with popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <!-- axios-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"
-        integrity="sha512-bHeT+z+n8rh9CKrSrbyfbINxu7gsBmSHlDCb3gUF1BjmjDzKhoKspyB71k0CIRBSjE5IVQiMMVBgCWjF60qsvA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Leaflet-->
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
-    <!-- Leaflet Clustering-->
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
-    <!-- our own data -->
-    <script src="data.js"></script>
-    <!-- finally script.js -->
-    <script src="script.js"></script>
 </body>
 
 </html>
