@@ -34,13 +34,14 @@ window.addEventListener("DOMContentLoaded", async function () {
                 let lat = r.latitude;
                 let lng = r.longitude;
                 console.log(lat, lng);
-                let greenIcon = L.icon({
-                    iconUrl: 'leaf-green.png',
-                    iconSize: [38, 95], // size of the icon
-                    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+                const parkIcon = L.divIcon({
+                    html: '<i class="fa-solid fa-tree"></i>',
+                    iconSize: [20,20],
+                    iconAnchor: [22, 94], 
+                    className: 'parkIcon'
                 });
-                let marker = L.marker([lat, lng], { icon: greenIcon }).addTo(markerClusterLayer);
-                marker.bindPopup(`<h1>${r.fullName}</h1>`)
+                let marker = L.marker([lat, lng], { icon: parkIcon }).addTo(markerClusterLayer);
+                marker.bindPopup(`<h1>${r.fullName}</h1>`);
 
                 // add to the search results
                 let resultElement = document.createElement("div");
@@ -52,7 +53,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     map.flyTo([lat, lng], 16);
                     marker.openPopup();
                 })
-
+                
                 searchResultElement.appendChild(resultElement);
 
             }
@@ -96,12 +97,13 @@ window.addEventListener("DOMContentLoaded", async function () {
                 let lat = c.latitude;
                 let lng = c.longitude;
                 console.log(lat, lng);
-                let redIcon = L.icon({
-                    iconUrl: 'leaf-red.png',
-                    iconSize: [38, 95], // size of the icon
-                    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+                const campgroundsIcon = L.divIcon({
+                    html: '<i class="fa-solid fa-campground"></i>',
+                    iconSize: [20,20],
+                    iconAnchor: [22, 94], 
+                    className: 'campgroundsIcon'
                 });
-                L.marker([lat, lng], { icon: redIcon }).addTo(markerClusterLayer).bindPopup(`<h1>${c.name}<h1>`);
+                L.marker([lat, lng], { icon: campgroundsIcon }).addTo(markerClusterLayer).bindPopup(`<h1>${c.name}<h1>`);
             }
         })
         // create a radio button for parkinglots
@@ -116,15 +118,16 @@ window.addEventListener("DOMContentLoaded", async function () {
                 let lat = p.latitude;
                 let lng = p.longitude;
                 console.log(lat, lng);
-                let orangeIcon = L.icon({
-                    iconUrl: 'leaf-orange.png',
-                    iconSize: [38, 95], // size of the icon
-                    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+                const carparkIcon = L.divIcon({
+                    html: '<i class="fa-solid fa-square-parking"></i>',
+                    iconSize: [20,20],
+                    iconAnchor: [22, 94],
+                    className: 'carparkIcon'
                 });
-                L.marker([lat, lng], { icon: orangeIcon }).addTo(markerClusterLayer).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
+                L.marker([lat, lng], { icon: carparkIcon }).addTo(markerClusterLayer).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
             }
         })
-        // adding foursquare to search for supermarkets to buy essentials before going campsites
+
         // let checkSupermarketsElement = document.querySelector("#supermarketsCheck");
         // let selectedSupermarkets = "";
         // checkSupermarketsElement.addEventListener("change", async function () {
@@ -143,6 +146,7 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         //     })
 
+        // adding foursquare to search for supermarkets to buy essentials before going campsites
         let checkbox = document.querySelector("#supermarketsCheck");
         checkbox.addEventListener('click', async function () {
             // console.log(response.data);
@@ -156,12 +160,18 @@ window.addEventListener("DOMContentLoaded", async function () {
                     // console.log(each);
                     let lat = each.geocodes.main.latitude;
                     let lng = each.geocodes.main.longitude;
-                    let redIcon = L.icon({
-                        iconUrl: 'leaf-red.png',
-                        iconSize: [38, 95], // size of the icon
-                        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+                    const supermarketIcon = L.divIcon({
+                        html: '<i class="fa-solid fa-bag-shopping"></i>',
+                        iconSize: [20,20],
+                        iconAnchor: [22, 94], 
+                        className: 'supermarketIcon'
                     });
-                    L.marker([lat, lng], { icon: redIcon }).addTo(markerClusterLayer).bindPopup(`<h1>${each.name}<h1>`);
+                    // let redIcon = L.icon({
+                    //     iconUrl: ,
+                    //     iconSize: [38, 95], // size of the icon
+                    //     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+                    // });
+                    L.marker([lat, lng], { icon: supermarketIcon }).addTo(markerClusterLayer).bindPopup(`<h1>${each.name}<h1>`);
             }
         }
     });
