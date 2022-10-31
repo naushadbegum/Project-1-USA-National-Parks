@@ -26,45 +26,51 @@
     <!-- i need to position absolute and it will be relative to the map-container -->
     <div id="map-container">
         <button id="btnToggleSearch">Toggle Search</button>
-        <div id="map">
-            <img src="oldmap.jpg" id="scroll">
-            <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
-                <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-              </div>
-              
-              <div id="London" class="tabcontent">
-                <h3>London</h3>
-                <p>London is the capital city of England.</p>
-              </div>
-              
-              <div id="Paris" class="tabcontent">
-                <h3>Paris</h3>
-                <p>Paris is the capital of France.</p> 
-              </div>
-              
-              <div id="Tokyo" class="tabcontent">
-                <h3>Tokyo</h3>
-                <p>Tokyo is the capital of Japan.</p>
-              </div>
+    <div id="map">
+        <img src="oldmap.jpg" id="scroll">
+        <div class="tabs">
+            <div class="tab-header">
+                <div class="active">
+                    <i class="fa-solid fa-tree"></i>Explore
+                </div>
+                <div class="active">
+                    <i class="fa-solid fa-compass"></i>Camping Guide
+                </div>
+                <div class="active">
+                    <i class="fa-solid fa-cloud-sun"></i>Weather
+                </div>
+            </div>
+            <div class="tab-indicator"></div>
+            <div class="tab-body">
+                <div class="active">
+                    <h2>This is Explore</h2>
+                    <!-- <div id="search-container"> -->
+                        <input type="text" id="searchTerms" />
+                        <button id="btnSearch">Search</button>
+                        <div id="results"></div>
+                        <select class="form-select" id="states-dropdown" aria-label="Default select example">
+                        </select>
+                    <!-- </div> -->
+                </div>
+            <div>
+                <h2>This is Camping</h2>
+                <button id="campgrounds">Campgrounds</button>
+                <input type="radio" name="parkinglots" value="parkinglots" class="parkinglots" id="parkinglots" />
+            <label>Parkinglots</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="checkbox" id="supermarketsCheck">
+                <label class="form-check-label" for="flexCheckIndeterminate">
+                    Supermarkets
+                </label>
+            </div>
+            </div>
+            <div>
+                <h2>This is weather</h2>
+                <p>Hi everyone</p>
+            </div>
         </div>
-        <div id="search-container">
-            <input type="text" id="searchTerms" />
-            <button id="btnSearch">Search</button>
-            <div id="results"></div>
-            <select class="form-select" id="states-dropdown" aria-label="Default select example">
-        </select>
-        <button id="campgrounds">Campgrounds</button>
-        <input type="radio" name="parkinglots" value="parkinglots" class="parkinglots" id="parkinglots"/>
-    <label>Parkinglots</label>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="checkbox" id="supermarketsCheck">
-            <label class="form-check-label" for="flexCheckIndeterminate">
-              Supermarkets
-            </label>
-          </div>
-        </div>
+    </div>
+
     </div>
 
 
@@ -86,6 +92,8 @@
     <script src="https://kit.fontawesome.com/86d5948c78.js" crossorigin="anonymous"></script>
     <!-- states data -->
     <script src="states.js"></script>
+    <!-- tabs designing -->
+    <script src="tabs.js"></script>
     <!-- our own data -->
     <script src="data.js"></script>
     <!-- finally script.js -->

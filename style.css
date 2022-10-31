@@ -16,47 +16,82 @@
     padding-top: 25px;
     padding-left: 25px;
     padding-bottom: 10px;
+    background-position: right top;
 }
 
-/* Style the tab */
-.tab {
+.tabs {
     position: absolute;
     z-index: 314159;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px 30px;
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-  }
-  
-  /* Style the buttons inside the tab */
-  .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-  }
-  
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-    background-color: #ddd;
-  }
-  
-  /* Create an active/current tablink class */
-  .tab button.active {
-    background-color: #ccc;
-  }
-  
-  /* Style the tab content */
-  .tabcontent {
-    display: none;
-    padding: 6px 6px;
-    border: 1px solid #ccc;
-    border-top: none;
-  }
+    border-radius: 50px;
+    box-shadow: 5px 10px 5px #ccc;
+}
 
+.tabs .tab-header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.tabs .tab-header>div {
+    width: calc(100% / 3);
+    text-align: center;
+    color: #69443C;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.tabs .tab-header>div>i {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.tabs .tab-header>div.active {
+    color: #8FDDE7;
+}
+
+.tabs .tab-indicator {
+    position: relative;
+    width: calc(100% / 3);
+    height: 5px;
+    background: white;
+    left: 0px;
+    border-radius: 5px;
+    transition: all 500ms ease-in-out;
+}
+
+.tabs .tab-body {
+    position: relative;
+    height: calc(100% - 6px);
+    padding: 10px 5px;
+}
+
+.tabs .tab-body>div {
+    position: absolute;
+    top: -200%;
+    opacity: 0;
+    margin-top: 5px;
+    transform: scale(0.9);
+    transition: opacity 500ms ease-in-out 0ms,
+        transform 500ms ease-in-out 0ms;
+}
+
+.tabs .tab-body>div.active {
+    top: 0px;
+    opacity: 1;
+    transform: scale(1);
+    margin-top: 0px;
+}
 
 #search-container {
     position: absolute;

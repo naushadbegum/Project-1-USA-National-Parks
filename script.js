@@ -10,15 +10,15 @@ window.addEventListener("DOMContentLoaded", async function () {
         let markerClusterLayer = L.markerClusterGroup(); // <-- only available because we included the marker cluster JS file
         markerClusterLayer.addTo(map);
         // mobile first 
-        document.querySelector("#btnToggleSearch").addEventListener("click", function () {
-            let searchContainerElement = document.querySelector("#search-container");
-            let currentDisplay = searchContainerElement.style.display;
-            if (!currentDisplay || currentDisplay == 'none') {
-                searchContainerElement.style.display = "block";
-            } else {
-                searchContainerElement.style.display = "none";
-            }
-        });
+        // document.querySelector("#btnToggleSearch").addEventListener("click", function () {
+        //     let searchContainerElement = document.querySelector("#search-container");
+        //     let currentDisplay = searchContainerElement.style.display;
+        //     if (!currentDisplay || currentDisplay == 'none') {
+        //         searchContainerElement.style.display = "block";
+        //     } else {
+        //         searchContainerElement.style.display = "none";
+        //     }
+        // });
 
         document.querySelector("#btnSearch").addEventListener("click", async function () {
 
@@ -128,24 +128,6 @@ window.addEventListener("DOMContentLoaded", async function () {
             }
         })
 
-        // let checkSupermarketsElement = document.querySelector("#supermarketsCheck");
-        // let selectedSupermarkets = "";
-        // checkSupermarketsElement.addEventListener("change", async function () {
-        //     for (let check of checkSupermarketsElement) {
-        //         if (check.checked) {
-        //             let boundaries = map.getBounds();
-        //             let center = boundaries.getCenter();
-        //             let latlng = center.lat + "," + center.lng;
-        //             let supermarketsResults = await search(latlng, 10000);
-        //             let lat = s.geocodes.main.latitude;
-        //             let lng = s.geocodes.main.longitude;
-
-        //         } 
-        //     }
-        //      console.log(lat, lng);
-
-        //     })
-
         // adding foursquare to search for supermarkets to buy essentials before going campsites
         let checkbox = document.querySelector("#supermarketsCheck");
         checkbox.addEventListener('click', async function () {
@@ -198,3 +180,5 @@ function initMap() {
 
     return map; //return map as result of the function
 }
+
+
