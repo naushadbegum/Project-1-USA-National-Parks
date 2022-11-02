@@ -9,24 +9,25 @@
 #scroll {
     position: absolute;
     z-index: 314159;
-    height: auto;
-    max-width: 350px;
+    height: 550px;
+    width: 430px;
     top: 2%;
     left: 5%;
     padding-top: 25px;
     padding-left: 25px;
     padding-bottom: 10px;
     background-position: right top;
+    border-radius: 50px
 }
 
 .tabs {
     position: absolute;
     z-index: 314159;
-    top: 50%;
-    left: 50%;
+    top: 30%;
+    left: 19%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 250px;
+    width: 430px;
+    height: 500px;
     background: rgba(255, 255, 255, 0.5);
     padding: 20px 30px;
     overflow: hidden;
@@ -34,7 +35,7 @@
     box-shadow: 5px 10px 5px #ccc;
 }
 
-.tabs .tab-header {
+/* .tabs .tab-header {
     height: 60px;
     display: flex;
     align-items: center;
@@ -43,10 +44,10 @@
 .tabs .tab-header>div {
     width: calc(100% / 3);
     text-align: center;
-    color: #69443C;
+    color: #8FDDE7;
     font-weight: 600;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
     text-transform: uppercase;
     outline: none;
 }
@@ -57,7 +58,7 @@
 }
 
 .tabs .tab-header>div.active {
-    color: #8FDDE7;
+    color: #69443C;
 }
 
 .tabs .tab-indicator {
@@ -91,7 +92,7 @@
     opacity: 1;
     transform: scale(1);
     margin-top: 0px;
-}
+} */
 
 #search-container {
     position: absolute;
@@ -108,12 +109,20 @@
 
 
 #results {
-    max-height: 300px;
+    max-height: 500px;
     overflow-y: scroll;
+    background-color:bisque;
+    z-index: 1030;
+    position: fixed;
+    width: 350px;
+    left: 10px;
+    bottom: 0px;
+    /* margin: 5px; */
 }
 
 .search-result {
     margin: 5px;
+    
 }
 
 @media (min-width: 767px) {
@@ -169,4 +178,9 @@
 .supermarketIcon {
     color: #69443C;
     font-size: 36px;
+}
+
+.imgIcon{
+    height: 250px;
+    width:300px;
 }

@@ -26,51 +26,48 @@
     <!-- i need to position absolute and it will be relative to the map-container -->
     <div id="map-container">
         <button id="btnToggleSearch">Toggle Search</button>
-    <div id="map">
-        <img src="oldmap.jpg" id="scroll">
-        <div class="tabs">
-            <div class="tab-header">
-                <div class="active">
-                    <i class="fa-solid fa-tree"></i>Explore
-                </div>
-                <div class="active">
-                    <i class="fa-solid fa-compass"></i>Camping Guide
-                </div>
-                <div class="active">
-                    <i class="fa-solid fa-cloud-sun"></i>Weather
-                </div>
-            </div>
-            <div class="tab-indicator"></div>
-            <div class="tab-body">
-                <div class="active">
-                    <h2>This is Explore</h2>
-                    <!-- <div id="search-container"> -->
+        <div id="map">
+            <img src="oldmap.jpg" id="scroll">
+            <div class="tabs">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                            aria-selected="true"><i class="fa-solid fa-tree"></i>Explore</button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa-solid fa-compass"></i>Camper's
+                            Guide</button>
+                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                            type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa-solid fa-cloud-sun"></i>Weather</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <p>Choose a state:</p>
+                        <select class="form-select" id="states-dropdown" aria-label="Default select example">
+                        </select>
                         <input type="text" id="searchTerms" />
                         <button id="btnSearch">Search</button>
                         <div id="results"></div>
-                        <select class="form-select" id="states-dropdown" aria-label="Default select example">
-                        </select>
-                    <!-- </div> -->
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <h2>This is Camping</h2>
+                        <button id="campgrounds">Campgrounds</button>
+                        <input type="radio" name="parkinglots" value="parkinglots" class="parkinglots"
+                            id="parkinglots" />
+                        <label>Parkinglots</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="checkbox" id="supermarketsCheck">
+                            <label class="form-check-label" for="flexCheckIndeterminate">
+                                Supermarkets
+                            </label>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        ...</div>
                 </div>
-            <div>
-                <h2>This is Camping</h2>
-                <button id="campgrounds">Campgrounds</button>
-                <input type="radio" name="parkinglots" value="parkinglots" class="parkinglots" id="parkinglots" />
-            <label>Parkinglots</label>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="checkbox" id="supermarketsCheck">
-                <label class="form-check-label" for="flexCheckIndeterminate">
-                    Supermarkets
-                </label>
-            </div>
-            </div>
-            <div>
-                <h2>This is weather</h2>
-                <p>Hi everyone</p>
             </div>
         </div>
-    </div>
-
     </div>
 
 
