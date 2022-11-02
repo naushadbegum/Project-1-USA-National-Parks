@@ -1,3 +1,75 @@
+#img-comp-container {
+    position: absolute;
+    height: 100vh;
+    /*should be the same height as the images*/
+}
+
+.img-comp-img {
+    position: absolute;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.img-comp-img img {
+    display: block;
+    height: 100vh;
+    vertical-align: middle;
+}
+
+.img-comp-slider {
+    position: absolute;
+    z-index: 9;
+    cursor: ew-resize;
+    /*set the appearance of the slider:*/
+    width: 40px;
+    height: 40px;
+    background-color: #69443C;
+    opacity: 0.7;
+    border-radius: 50%;
+}
+
+.button-explore {
+    /* position: absolute;
+                z-index: 314459;
+                top: 2%;
+                left: 15%;
+                background-color: rgba(255, 255, 255, 0.5);
+                padding-top: 25px;
+                padding-left: 25px;
+                padding-bottom: 10px; */
+    margin: 0;
+    position: absolute;
+    z-index: 314459;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    top: 70%;
+    left: 40%;
+}
+
+.button-explore:focus {
+    outline: 0;
+}
+
+.button-explore {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 50px;
+    color: #69443C;
+}
+
+.button-explore {
+    padding: 15px 125px;
+}
+
+.button-explore {
+    background-color: white;
+    border-radius: 100px;
+}
+
 #map {
     height: 100vh;
 }
@@ -12,25 +84,28 @@
     min-height: 25px;
     top: 2%;
     left: 15%;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     padding-top: 25px;
     padding-left: 25px;
     padding-bottom: 10px;
     display: none;
 }
+
 #results {
     max-height: 300px;
     overflow-y: scroll;
 }
-.search-result{
+
+.search-result {
     margin: 5px;
 }
 
-@media (min-width: 767px){
+@media (min-width: 767px) {
     #search-container {
         display: block;
         left: 5%;
     }
+
     #btnToggleSearch {
         display: none;
     }
@@ -40,7 +115,7 @@
     position: absolute;
     left: 10px;
     top: 10px;
-    z-index:30000;
+    z-index: 30000;
 }
 
 .dropdown-group {
@@ -49,7 +124,7 @@
     min-height: 25px;
     top: 100%;
     left: 15%;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     padding-top: 25px;
     padding-left: 25px;
     padding-right: 50px;
@@ -57,4 +132,3 @@
     max-height: 300px;
     overflow-y: scroll;
 }
-
