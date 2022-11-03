@@ -1,53 +1,55 @@
-#img-comp-container {
+/* intro */
+
+/* #intro-parks {
     position: absolute;
-    height: 100vh;
-    /*should be the same height as the images*/
+    z-index: 314461;
+    background-color: bisque;
+    color: #69443C;
+    padding: 0.35em;
+    border-radius: 90px;
+    font-size: 40px;
+    font-family: 'Lato', sans-serif;
+    left: 30%;
+    box-shadow: 5px 10px 5px #ccc;
 }
 
-.img-comp-img {
+#intro-adventure {
     position: absolute;
-    height: 100vh;
-    overflow: hidden;
+    z-index: 314461;
+    background-color: transparent;
+    color: #69443C;
+    font-size: 100px;
+    font-family: 'Zen Antique Soft', serif;
+    top: 20%;
+    left: 30%;
+    text-align: center;
 }
 
-.img-comp-img img {
-    display: block;
-    height: 100vh;
-    vertical-align: middle;
-}
-
-.img-comp-slider {
+.adventure {
     position: absolute;
-    z-index: 9;
-    cursor: ew-resize;
-    /*set the appearance of the slider:*/
-    width: 40px;
-    height: 40px;
-    background-color: #69443C;
-    opacity: 0.7;
-    border-radius: 50%;
-}
+    width: 100%;
+    height: 100%;
+    /* background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; */
+    z-index: 314460;
+    object-fit: cover;
+    object-position: center;
+} */
 
 .button-explore {
-    /* position: absolute;
-                z-index: 314459;
-                top: 2%;
-                left: 15%;
-                background-color: rgba(255, 255, 255, 0.5);
-                padding-top: 25px;
-                padding-left: 25px;
-                padding-bottom: 10px; */
     margin: 0;
     position: absolute;
-    z-index: 314459;
+    z-index: 314460;
     padding: 0;
     border: none;
     font: inherit;
     color: inherit;
     background-color: transparent;
     cursor: pointer;
-    top: 70%;
-    left: 40%;
+    top: 60%;
+    left: 35%;
 }
 
 .button-explore:focus {
@@ -78,33 +80,158 @@
     position: relative;
 }
 
-#scroll {
+.tabs-container {
     position: absolute;
     z-index: 314159;
-    height: 550px;
-    width: 430px;
-    top: 2%;
-    left: 5%;
-    padding-top: 25px;
-    padding-left: 25px;
-    padding-bottom: 10px;
-    background-position: right top;
-    border-radius: 50px
-}
-
-.tabs {
-    position: absolute;
-    z-index: 314159;
-    top: 30%;
+    top: 40%;
     left: 19%;
     transform: translate(-50%, -50%);
-    width: 430px;
+    width: 400px;
     height: 500px;
     background: rgba(255, 255, 255, 0.5);
     padding: 20px 30px;
     overflow: hidden;
     border-radius: 50px;
+    background-position: right top;
     box-shadow: 5px 10px 5px #ccc;
+}
+
+.search-container {
+    position: absolute;
+    z-index: 314159;
+    min-height: 25px;
+    top: 10%;
+    left: 15%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#search-bar {
+    background: #fff;
+    width: 200px;
+    height: 55px;
+    display: flex;
+}
+
+#searchTerms {
+    flex: 1;
+    border: none;
+    outline: none;
+    top:20%;
+}
+
+#btnSearch {
+    top: 20%;
+    background: #8FDDE7;
+    padding: 10px 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    letter-spacing: 1px;
+    /* cursor: pointer; */
+}
+
+#selectState {
+    font-family: 'Noto Serif Display', serif;
+    font-size: 20px;
+}
+
+#states-dropdown {
+    width: 200px;
+    background: #8FDDE7;
+    top: 30%;
+}
+
+#states-dropdown:hover {
+    background-image: none;
+    background-color: beige;
+}
+
+#results {
+    max-height: 300px;
+    overflow-y: scroll;
+    background-color: bisque;
+    z-index: 1030;
+    position: fixed;
+    width: 350px;
+    left: 10px;
+    bottom: 0px;
+    /* margin: 5px; */
+}
+
+.search-result {
+    margin: 5px;
+
+}
+
+@media (min-width: 767px) {
+    #search-container {
+        display: block;
+        left: 5%;
+    }
+
+    #btnToggleSearch {
+        display: none;
+    }
+}
+
+#btnToggleSearch {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 30000;
+}
+
+.dropdown-group {
+    position: absolute;
+    z-index: 40000;
+    min-height: 25px;
+    top: 50%;
+    left: 15%;
+    background: #8FDDE7;
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 50px;
+    padding-bottom: 100px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+/* Icons */
+
+.parkIcon {
+    color: #69443C;
+    font-size: 36px;
+}
+
+.campgroundsIcon {
+    color: #69443C;
+    font-size: 36px;
+}
+
+.carparkIcon {
+    color: #69443C;
+    font-size: 36px;
+}
+
+.supermarketIcon {
+    color: #69443C;
+    font-size: 36px;
+}
+
+.imgIcon {
+    height: 250px;
+    width: 300px;
+}
+
+.btn btn-primary {
+    position: absolute;
+    z-index: 314160;
 }
 
 /* .tabs .tab-header {
@@ -166,92 +293,51 @@
     margin-top: 0px;
 } */
 
-#search-container {
+
+:root{
+    --primary-color: #8FDDE7;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radio-title-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.input-container{
+    position:absolute;
+    height: 5rem;
+    width: 5rem;
+    margin: 0.5rem;
+}
+
+.input-container input{
     position: absolute;
-    z-index: 314159;
-    min-height: 25px;
-    top: 2%;
-    left: 15%;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding-top: 25px;
-    padding-left: 25px;
-    padding-bottom: 10px;
-    display: none;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
 }
 
-#results {
-    max-height: 500px;
-    overflow-y: scroll;
-    background-color:bisque;
-    z-index: 1030;
-    position: fixed;
-    width: 350px;
-    left: 10px;
-    bottom: 0px;
-    /* margin: 5px; */
+/* .input-container .radio-tile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    transition: all 300ms ease;
 }
 
-.search-result {
-    margin: 5px;
-    
-}
-
-@media (min-width: 767px) {
-    #search-container {
-        display: block;
-        left: 5%;
-    }
-
-    #btnToggleSearch {
-        display: none;
-    }
-}
-
-#btnToggleSearch {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    z-index: 30000;
-}
-
-.dropdown-group {
-    position: absolute;
-    z-index: 40000;
-    min-height: 25px;
-    top: 100%;
-    left: 15%;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding-top: 25px;
-    padding-left: 25px;
-    padding-right: 50px;
-    padding-bottom: 100px;
-    max-height: 300px;
-    overflow-y: scroll;
-}
-
-/* Icons */
-
-.parkIcon {
-    color: #69443C;
-    font-size: 36px;
-}
-
-.campgroundsIcon {
-    color: #69443C;
-    font-size: 36px;
-}
-
-.carparkIcon {
-    color: #69443C;
-    font-size: 36px;
-}
-
-.supermarketIcon {
-    color: #69443C;
-    font-size: 36px;
-}
-
-.imgIcon{
-    height: 250px;
-    width:300px;
-}
+.fa-solid fa-square-parking{
+    color: var(--primary-color);
+    font-size: 3rem;
+} */

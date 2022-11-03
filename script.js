@@ -8,13 +8,23 @@ window.addEventListener("DOMContentLoaded", async function () {
         let campClusterLayer = L.layerGroup();
         campClusterLayer.addTo(map);
 
+        let campMarkerClusterLayer = L.markerClusterGroup();
+        campMarkerClusterLayer.addTo(map);
+
         let parkinglotsClusterLayer = L.layerGroup();
         parkinglotsClusterLayer.addTo(map);
 
+        let parkinglotspMarkerClusterLayer = L.markerClusterGroup();
+        parkinglotspMarkerClusterLayer.addTo(map);
+
         let supermarketClusterLayer = L.layerGroup();
         supermarketClusterLayer.addTo(map);
+
+        let supermarketMarkerClusterLayer = L.markerClusterGroup();
+        supermarketMarkerClusterLayer.addTo(map);
         
-        let amenities = L.layerGroup([campClusterLayer, parkinglotsClusterLayer, supermarketClusterLayer]);
+        // let amenities = L.layerGroup([campClusterLayer, parkinglotsClusterLayer, supermarketClusterLayer]);
+
         let osm = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
@@ -27,29 +37,31 @@ window.addEventListener("DOMContentLoaded", async function () {
             "OpenStreetMap": osm,
         };
         let overlayMaps = {
-            "Amenities": amenities
+            "Campgrounds": campClusterLayer,
+            "Parkinglots": parkinglotsClusterLayer,
+            "Convinience Stores": supermarketClusterLayer
         };
     
         let layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
         // let searchResultLayer = L.layerGroup();
         // searchResultLayer.addTo(map);
-        let markerClusterLayer = L.markerClusterGroup(); // <-- only available because we included the marker cluster JS file
-        markerClusterLayer.addTo(map);
+        let parksClusterLayer = L.markerClusterGroup(); // <-- only available because we included the marker cluster JS file
+        parksClusterLayer.addTo(map);
         // mobile first 
-        // document.querySelector("#btnToggleSearch").addEventListener("click", function () {
-        //     let searchContainerElement = document.querySelector("#search-container");
-        //     let currentDisplay = searchContainerElement.style.display;
-        //     if (!currentDisplay || currentDisplay == 'none') {
-        //         searchContainerElement.style.display = "block";
-        //     } else {
-        //         searchContainerElement.style.display = "none";
-        //     }
-        // });
+        document.querySelector("#btnToggleSearch").addEventListener("click", function () {
+            let searchContainerElement = document.querySelector(".search-container");
+            let currentDisplay = searchContainerElement.style.display;
+            if (!currentDisplay || currentDisplay == 'none') {
+                searchContainerElement.style.display = "block";
+            } else {
+                searchContainerElement.style.display = "none";
+            }
+        });
 
         document.querySelector("#btnSearch").addEventListener("click", async function () {
 
-            markerClusterLayer.clearLayers(); // previous results gets deleted
+            parksClusterLayer.clearLayers(); // previous results gets deleted
             let query = document.querySelector("#searchTerms").value;
             // alert(query);
             let stateCode = document.querySelector("#states-dropdown").value;
@@ -71,7 +83,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconAnchor: [20, 40],
                     className: 'parkIcon'
                 });
-                let marker = L.marker([lat, lng], { icon: parkIcon }).addTo(markerClusterLayer);
+                let marker = L.marker([lat, lng], { icon: parkIcon }).addTo(parksClusterLayer);
                 marker.bindPopup(`<h1>${r.fullName}</h1><img class="imgIcon" src="${r.images[0].url}"/><h2>${r.addresses[0].line1}</h2><h2>${r.addresses[0].city}</h2><h2>${r.addresses[0].postalCode}</h2>`);
 
                 // add to the search results
@@ -136,9 +148,9 @@ window.addEventListener("DOMContentLoaded", async function () {
         })();
 
 
-        // create a button for campgrounds
-        let campgroundsElement = document.querySelector("#campgrounds");
-        campgroundsElement.addEventListener("click", async function () {
+        // create a radiobutton for campgrounds
+        let campgroundsElement = document.querySelector("#campgroundsRadio");
+        campgroundsElement.addEventListener("change", async function () {
             // alert("hi");
             let selectedCampgrounds = "";
             let stateCode = document.querySelector("#states-dropdown").value;
@@ -154,13 +166,13 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconAnchor: [20, 40],
                     className: 'campgroundsIcon'
                 });
-                L.marker([lat, lng], { icon: campgroundsIcon }).addTo(campClusterLayer).bindPopup(`<h1>${c.name}<h1><img class="imgIcon" src="${c.images[0].url}"/><h2>${c.addresses[0].line1}</h2><h2>${c.addresses[0].city}</h2><h2>${c.addresses[0].postalCode}</h2>`);
+                L.marker([lat, lng], { icon: campgroundsIcon }).addTo(campClusterLayer).addTo(campMarkerClusterLayer).bindPopup(`<h1>${c.name}<h1><img class="imgIcon" src="${c.images[0].url}"/><h2>${c.addresses[0].line1}</h2><h2>${c.addresses[0].city}</h2><h2>${c.addresses[0].postalCode}</h2>`);
             }
         })
-        // create a radio button for parkinglots
+        // create a checkbox for parkinglots
 
-        let radioParkinglotsElement = document.querySelector("#parkinglots");
-        radioParkinglotsElement.addEventListener("click", async function () {
+        let checkboxParkinglotsElement = document.querySelector("#parkinglotsCheck");
+        checkboxParkinglotsElement.addEventListener("change", async function () {
             let selectedParkinglots = "";
             let stateCode = document.querySelector("#states-dropdown").value;
             let usParkinglots = await searchParkinglots(stateCode);
@@ -175,15 +187,11 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconAnchor: [20, 40],
                     className: 'carparkIcon'
                 });
-                L.marker([lat, lng], { icon: carparkIcon }).addTo(parkinglotsClusterLayer).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
+                L.marker([lat, lng], { icon: carparkIcon }).addTo(parkinglotsClusterLayer).addTo(parkinglotspMarkerClusterLayer).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
             }
         })
 
-
-
-
-
-
+        
         // adding foursquare to search for supermarkets to buy essentials before going campsites
         let checkbox = document.querySelector("#supermarketsCheck");
         checkbox.addEventListener('change', async function () {
@@ -209,7 +217,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     //     iconSize: [38, 95], // size of the icon
                     //     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
                     // });
-                    L.marker([lat, lng], { icon: supermarketIcon }).addTo(supermarketClusterLayer).bindPopup(`<h1>${each.name}<h1>`);
+                    L.marker([lat, lng], { icon: supermarketIcon }).addTo(supermarketClusterLayer).addTo(supermarketMarkerClusterLayer).bindPopup(`<h1>${each.name}<h1>`);
                 }
 
             }
@@ -222,7 +230,14 @@ window.addEventListener("DOMContentLoaded", async function () {
 
 function initMap() {
     // create a map object
-    let map = L.map('map');
+    //moved the zoom control to the bottomright 
+    let map = L.map('map', {
+        zoomControl: false
+    });
+    
+    L.control.zoom({
+        position: 'bottomright'
+    }).addTo(map);
     // set the center point and the zoom
     map.setView([39.82, -98.58], 5);
 
