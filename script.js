@@ -5,20 +5,20 @@ window.addEventListener("DOMContentLoaded", async function () {
     function init() {
         let map = initMap();
 
-        let campClusterLayer = L.layerGroup();
-        campClusterLayer.addTo(map);
+        // let campClusterLayer = L.layerGroup();
+        // campClusterLayer.addTo(map);
 
         let campMarkerClusterLayer = L.markerClusterGroup();
         campMarkerClusterLayer.addTo(map);
 
-        let parkinglotsClusterLayer = L.layerGroup();
-        parkinglotsClusterLayer.addTo(map);
+        // let parkinglotsClusterLayer = L.layerGroup();
+        // parkinglotsClusterLayer.addTo(map);
 
         let parkinglotspMarkerClusterLayer = L.markerClusterGroup();
         parkinglotspMarkerClusterLayer.addTo(map);
 
-        let supermarketClusterLayer = L.layerGroup();
-        supermarketClusterLayer.addTo(map);
+        // let supermarketClusterLayer = L.layerGroup();
+        // supermarketClusterLayer.addTo(map);
 
         let supermarketMarkerClusterLayer = L.markerClusterGroup();
         supermarketMarkerClusterLayer.addTo(map);
@@ -37,9 +37,9 @@ window.addEventListener("DOMContentLoaded", async function () {
             "OpenStreetMap": osm,
         };
         let overlayMaps = {
-            "Campgrounds": campClusterLayer,
-            "Parkinglots": parkinglotsClusterLayer,
-            "Convinience Stores": supermarketClusterLayer
+            "Campgrounds": campMarkerClusterLayer,
+            "Parkinglots": parkinglotspMarkerClusterLayer,
+            "Convinience Stores": supermarketMarkerClusterLayer
         };
     
         let layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         parksClusterLayer.addTo(map);
         // mobile first 
         document.querySelector("#btnToggleSearch").addEventListener("click", function () {
-            let searchContainerElement = document.querySelector(".search-container");
+            let searchContainerElement = document.querySelector(".tabs-container");
             let currentDisplay = searchContainerElement.style.display;
             if (!currentDisplay || currentDisplay == 'none') {
                 searchContainerElement.style.display = "block";
@@ -66,11 +66,15 @@ window.addEventListener("DOMContentLoaded", async function () {
             // alert(query);
             let stateCode = document.querySelector("#states-dropdown").value;
             let searchResults = await searchParks(stateCode, query);
-
+// console.log(searchResults);
             let searchResultElement = document.querySelector("#results");
             searchResultElement.innerHTML = "";
+            // validation
             if (query.trim() == "") {
                 searchResultElement.innerHTML = "Type a park name";
+            }
+            else if (searchResults.data.length == 0){
+                searchResultElement.innerHTML = "No such park found";
             }
             for (let r of searchResults.data) {
                 //display marker
@@ -129,8 +133,8 @@ window.addEventListener("DOMContentLoaded", async function () {
                 let stateName = each.properties.name;
                 stateNames.push(stateName);
 
-                // let latOfState = each.geometry.coordinates;
-                // let lngOfState = each.geometry.coordinates;
+                // let latOfState = each.geometry.coordinates[0][0][0];
+                // let lngOfState = each.geometry.coordinates[0][0][1];
                 // latOfStates.push(latOfState);
                 // lngOfStates.push(lngOfState);
             }
@@ -141,6 +145,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                 let stateOptions = document.createElement("option");
                 stateOptions.text = opt;
                 stateOptions.value = stateCodes[i];
+// add event listeners to stateoptions
                 selectElement.appendChild(stateOptions);
             }
             let stateCode = document.querySelector("#states-dropdown").value;
@@ -166,7 +171,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconAnchor: [20, 40],
                     className: 'campgroundsIcon'
                 });
-                L.marker([lat, lng], { icon: campgroundsIcon }).addTo(campClusterLayer).addTo(campMarkerClusterLayer).bindPopup(`<h1>${c.name}<h1><img class="imgIcon" src="${c.images[0].url}"/><h2>${c.addresses[0].line1}</h2><h2>${c.addresses[0].city}</h2><h2>${c.addresses[0].postalCode}</h2>`);
+                L.marker([lat, lng], { icon: campgroundsIcon }).addTo(campMarkerClusterLayer).bindPopup(`<h1>${c.name}<h1><img class="imgIcon" src="${c.images[0].url}"/><h2>${c.addresses[0].line1}</h2><h2>${c.addresses[0].city}</h2><h2>${c.addresses[0].postalCode}</h2>`);
             }
         })
         // create a checkbox for parkinglots
@@ -187,7 +192,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconAnchor: [20, 40],
                     className: 'carparkIcon'
                 });
-                L.marker([lat, lng], { icon: carparkIcon }).addTo(parkinglotsClusterLayer).addTo(parkinglotspMarkerClusterLayer).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
+                L.marker([lat, lng], { icon: carparkIcon }).addTo(parkinglotspMarkerClusterLayer).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
             }
         })
 
@@ -217,7 +222,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     //     iconSize: [38, 95], // size of the icon
                     //     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
                     // });
-                    L.marker([lat, lng], { icon: supermarketIcon }).addTo(supermarketClusterLayer).addTo(supermarketMarkerClusterLayer).bindPopup(`<h1>${each.name}<h1>`);
+                    L.marker([lat, lng], { icon: supermarketIcon }).addTo(supermarketMarkerClusterLayer).bindPopup(`<h1>${each.name}<h1>`);
                 }
 
             }

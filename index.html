@@ -27,44 +27,46 @@
 
 <body>
     <!-- intro page -->
-    <!-- <div id="intro-container">
-        <p id="intro-parks">NATIONAL PARKS OF USA</p>
-        <p id="intro-adventure">ADVENTURE <br> AWAITS...</p>
-        <img class="adventure" src="bmap.jpg">
+    <div id="intro-container">
+        <div id="intro-text">
+            <p id="intro-parks">NATIONAL PARKS OF USA</p>
+            <p id="intro-adventure">ADVENTURE <br> AWAITS...</p>
+        </div>
         <button onclick="myFunction()" class="button-explore">EXPLORE</button>
-    </div> -->
+    </div>
     <!-- i need to position absolute and it will be relative to the map-container -->
     <div id="map-container">
         <button id="btnToggleSearch">Toggle Search</button>
         <div id="map">
-            <!-- <img src="oldmap.jpg" id="scroll"> -->
             <div class="tabs-container">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                        <button class="nav-link active" id="nav-explore-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
                             aria-selected="true"><i class="fa-solid fa-tree"></i>Explore</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                        <button class="nav-link" id="nav-camper-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
                             type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i
                                 class="fa-solid fa-compass"></i>Camper's
                             Guide</button>
-                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                        <!-- <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
                             type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i
-                                class="fa-solid fa-cloud-sun"></i>Weather</button>
+                                class="fa-solid fa-cloud-sun"></i>Weather</button> -->
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <div class="search-container">
-                            <div id="search-bar">
-                                <input type="text" placeholder="Type a park name eg.park" id="searchTerms" />
-                                <button id="btnSearch">Search</button>
-                            </div>
-                            <div id="results"></div>
+                        <!-- <div class="search-container"> -->
+                        <div id="select-dropdown">
+                            <p id="selectState">Which state are you exploring? Pick below</p>
+                            <select class="form-select" id="states-dropdown" aria-label="Default select example">
+                            </select>
                         </div>
-                        <p id="selectState">SELECT A STATE :</p>
-                        <select class="form-select" id="states-dropdown" aria-label="Default select example">
-                        </select>
+                        <div id="search-bar">
+                            <input type="text" placeholder="Type a park name eg.park" id="searchTerms" />
+                            <button id="btnSearch">Search</button>
+                        </div>
+                        <div id="results"></div>
+                        <!-- </div> -->
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <h2>This is Camping</h2>
@@ -82,38 +84,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                        ...</div>
+                    <!-- <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        ...</div> -->
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- bootscrap bundle with popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <!-- axios-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"
-        integrity="sha512-bHeT+z+n8rh9CKrSrbyfbINxu7gsBmSHlDCb3gUF1BjmjDzKhoKspyB71k0CIRBSjE5IVQiMMVBgCWjF60qsvA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Leaflet-->
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
-    <!-- Leaflet Clustering-->
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
-    <!-- icons from fontawesome -->
-    <script src="https://kit.fontawesome.com/86d5948c78.js" crossorigin="anonymous"></script>
-    <!-- states data -->
-    <script src="states.js"></script>
-    <!-- intro designing -->
-    <script src="intro.js"></script>
-    <!-- our own data -->
-    <script src="data.js"></script>
-    <!-- finally script.js -->
-    <script src="script.js"></script>
+        <!-- bootscrap bundle with popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+        <!-- axios-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"
+            integrity="sha512-bHeT+z+n8rh9CKrSrbyfbINxu7gsBmSHlDCb3gUF1BjmjDzKhoKspyB71k0CIRBSjE5IVQiMMVBgCWjF60qsvA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Leaflet-->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+        <!-- Leaflet Clustering-->
+        <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
+        <!-- icons from fontawesome -->
+        <script src="https://kit.fontawesome.com/86d5948c78.js" crossorigin="anonymous"></script>
+        <!-- states data -->
+        <script src="states.js"></script>
+        <!-- intro designing -->
+        <script src="intro.js"></script>
+        <!-- our own data -->
+        <script src="data.js"></script>
+        <!-- finally script.js -->
+        <script src="script.js"></script>
 </body>
 
 </html>
