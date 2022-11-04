@@ -142,12 +142,18 @@
     }
 }
 
-#nav-explore-tab{
+#nav-explore-tab {
     font-family: 'Zen Antique Soft', serif;
+    font-weight: bold;
+    font-size: 25px;
+    color: #69443C;
 }
 
-#nav-camper-tab{
+#nav-guide-tab {
     font-family: 'Zen Antique Soft', serif;
+    font-weight: bold;
+    font-size: 25px;
+    color: #69443C;
 }
 
 /* .search-container {
@@ -166,7 +172,7 @@
     justify-content: flex-start;
     align-items: flex-start; */
 /* }
-*/ 
+*/
 
 #select-dropdown {
     margin: 10px;
@@ -227,18 +233,26 @@
 
 #results {
     font-family: 'Lato', sans-serif;
+    font-size: larger;
     max-height: 250px;
     overflow-y: scroll;
     background-color: rgba(255, 255, 255, 0.5);
-    z-index: 1030;
-    position: fixed;
-    width: 350px;
-    left: 5%;
+    /* z-index: 1030; */
+    /* position: fixed; */
+    width: 280px;
+    left: 2%;
     top: 50%;
     bottom: 5px;
     margin: 10px;
     border-radius: 50px;
-    padding: 10px 50px;
+    padding: 10px 40px;
+    text-decoration: underline;
+    cursor: pointer;
+    display: block;
+}
+
+#results:hover {
+    color: #8FDDE7 !important;
 }
 
 @media (min-width: 767px) {
@@ -257,6 +271,18 @@
     left: 10px;
     top: 10px;
     z-index: 314159;
+}
+
+.campgroundsRadio {
+    accent-color: #8FDDE7;
+    cursor: pointer;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+#textCampgrounds{
+    font-family: 'Lato', sans-serif;
+    font-size: 30px;
 }
 
 /* Icons */
@@ -286,116 +312,6 @@
     width: 300px;
 }
 
-.btn btn-primary {
-    position: absolute;
-    z-index: 314160;
+.fa-solid fa-campground{
+    font-size: 50px;
 }
-
-/* .tabs .tab-header {
-    height: 60px;
-    display: flex;
-    align-items: center;
-}
-
-.tabs .tab-header>div {
-    width: calc(100% / 3);
-    text-align: center;
-    color: #8FDDE7;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 18px;
-    text-transform: uppercase;
-    outline: none;
-}
-
-.tabs .tab-header>div>i {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.tabs .tab-header>div.active {
-    color: #69443C;
-}
-
-.tabs .tab-indicator {
-    position: relative;
-    width: calc(100% / 3);
-    height: 5px;
-    background: white;
-    left: 0px;
-    border-radius: 5px;
-    transition: all 500ms ease-in-out;
-}
-
-.tabs .tab-body {
-    position: relative;
-    height: calc(100% - 6px);
-    padding: 10px 5px;
-}
-
-.tabs .tab-body>div {
-    position: absolute;
-    top: -200%;
-    opacity: 0;
-    margin-top: 5px;
-    transform: scale(0.9);
-    transition: opacity 500ms ease-in-out 0ms,
-        transform 500ms ease-in-out 0ms;
-}
-
-.tabs .tab-body>div.active {
-    top: 0px;
-    opacity: 1;
-    transform: scale(1);
-    margin-top: 0px;
-} */
-
-
-:root {
-    --primary-color: #8FDDE7;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.radio-title-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.input-container {
-    position: absolute;
-    height: 5rem;
-    width: 5rem;
-    margin: 0.5rem;
-}
-
-.input-container input {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    cursor: pointer;
-    z-index: 2;
-    opacity: 0;
-}
-
-/* .input-container .radio-tile{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    border: 2px solid var(--primary-color);
-    border-radius: 8px;
-    transition: all 300ms ease;
-}
-
-.fa-solid fa-square-parking{
-    color: var(--primary-color);
-    font-size: 3rem;
-} */

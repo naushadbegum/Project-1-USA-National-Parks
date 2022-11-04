@@ -44,10 +44,9 @@
                         <button class="nav-link active" id="nav-explore-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
                             aria-selected="true"><i class="fa-solid fa-tree"></i>Explore</button>
-                        <button class="nav-link" id="nav-camper-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                        <button class="nav-link" id="nav-guide-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
                             type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i
-                                class="fa-solid fa-compass"></i>Camper's
-                            Guide</button>
+                                class="fa-solid fa-compass"></i>Guide</button>
                         <!-- <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
                             type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i
                                 class="fa-solid fa-cloud-sun"></i>Weather</button> -->
@@ -55,7 +54,6 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <!-- <div class="search-container"> -->
                         <div id="select-dropdown">
                             <p id="selectState">Which state are you exploring? Pick below</p>
                             <select class="form-select" id="states-dropdown" aria-label="Default select example">
@@ -66,13 +64,12 @@
                             <button id="btnSearch">Search</button>
                         </div>
                         <div id="results"></div>
-                        <!-- </div> -->
                     </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <h2>This is Camping</h2>
+                    <div class=" tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <h2 style="font-family:'Lato', sans-serif;text-align: center;">Camper's Guide</h2>
                         <input type="radio" name="campgrounds" value="campgrounds" class="campgroundsRadio"
                             id="campgroundsRadio" />
-                        <label>Campgrounds</label>
+                        <label id="textCampgrounds">Camper's Guide</label><i class="fa-solid fa-campground" style="font-size:5em;"></i>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" value="checkbox" id="parkinglotsCheck">
                             <label>Parkinglots</label><i class="fa-solid fa-square-parking"></i>
