@@ -38,8 +38,8 @@ window.addEventListener("DOMContentLoaded", async function () {
         };
         let overlayMaps = {
             "Campgrounds": campMarkerClusterLayer,
-            "Parkinglots": parkinglotspMarkerClusterLayer,
-            "Convinience Stores": supermarketMarkerClusterLayer
+            "Parking Lots": parkinglotspMarkerClusterLayer,
+            "Convenience Stores": supermarketMarkerClusterLayer
         };
     
         let layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
@@ -88,34 +88,14 @@ window.addEventListener("DOMContentLoaded", async function () {
                     className: 'parkIcon'
                 });
                 let marker = L.marker([lat, lng], { icon: parkIcon }).addTo(parksClusterLayer);
-                marker.bindPopup(`<h1>${r.fullName}</h1><img class="imgIcon" src="${r.images[0].url}"/><h2>Address:</h2><h2>${r.addresses[0].line1}</h2><h2>${r.addresses[0].city}</h2><h2>${r.addresses[0].postalCode}</h2>`);
+                marker.bindPopup(`<h1>${r.fullName}</h1><img class="imgIcon" src="${r.images[0].url}"/><h3 style="font-weight:bold;text-decoration:underline;">Address:</h3><h3>${r.addresses[0].line1}</h3><h3>${r.addresses[0].city}</h3><h3>${r.addresses[0].postalCode}</h3>`);
 
                 // add to the search results
                 let resultElement = document.createElement("div");
                 resultElement.innerText = r.fullName;
                 resultElement.classList.add("search-result");
-
-                function makeUL(array) {
-                    // Create the list element:
-                    var list = document.createElement('ul');
-                
-                    for (var i = 0; i < array.length; i++) {
-                        // Create the list item:
-                        var item = document.createElement('li');
-                
-                        // Set its contents:
-                        item.appendChild(document.createTextNode(array[i]));
-                
-                        // Add it to the list:
-                        list.appendChild(item);
-                    }
-                
-                    // Finally, return the constructed list:
-                    return list;
-                }
-                
-                // Add the contents of options[0] to #foo:
-                document.getElementById('results').appendChild(makeUL(resultElement[0]));
+                resultElement.classList.add("ul");
+                resultElement.classList.add("li");
 
                 // function validation(){
                 //     let v = document.querySelector("#results").value;
@@ -193,7 +173,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconAnchor: [20, 40],
                     className: 'campgroundsIcon'
                 });
-                L.marker([lat, lng], { icon: campgroundsIcon }).addTo(campMarkerClusterLayer).bindPopup(`<h1>${c.name}<h1><img class="imgIcon" src="${c.images[0].url}"/><h2>${c.addresses[0].line1}</h2><h2>${c.addresses[0].city}</h2><h2>${c.addresses[0].postalCode}</h2>`);
+                L.marker([lat, lng], { icon: campgroundsIcon }).addTo(campMarkerClusterLayer).bindPopup(`<h1>${c.name}<h1><img class="imgIcon" src="${c.images[0].url}"/><h3 style="font-weight:bold;text-decoration:underline;">Address:</h3><h3>${c.addresses[0].line1}</h3><h3>${c.addresses[0].city}</h3><h3>${c.addresses[0].postalCode}</h3>`);
             }
         })
         // create a checkbox for parkinglots
@@ -214,7 +194,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                     iconAnchor: [20, 40],
                     className: 'carparkIcon'
                 });
-                L.marker([lat, lng], { icon: carparkIcon }).addTo(parkinglotspMarkerClusterLayer).bindPopup(`<h1>${p.name}<h1><h3>${p.description}<h3>`);
+                L.marker([lat, lng], { icon: carparkIcon }).addTo(parkinglotspMarkerClusterLayer).bindPopup(`<h1>${p.name}<h1><h3 style="font-weight:bold;text-decoration:underline;">Parking Information:</h3><h4>${p.description}<h4>`);
             }
         })
 
