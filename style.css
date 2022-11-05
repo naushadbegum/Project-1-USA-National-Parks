@@ -83,9 +83,9 @@
 }
 
 /* mobile friendly for intro page */
-/* @media (max-width: 767px) {
+@media (max-width: 767px) {
     #intro-text {
-        gap: 120px;
+        gap: 100px;
     }
     #intro-parks {
         font-size: 30px;
@@ -107,7 +107,7 @@
     .button-explore {
         margin-left: 40px;
     }
-} */
+}
 
 /* map page */
 
@@ -160,24 +160,6 @@
     color: #8FDDE7;
 
 }
-
-/* .search-container {
-    /* position: absolute;
-    z-index: 314159; */
-/* min-height: 25px; */
-/* top: 10%;
-    left: 15%; */
-/* background-color: rgba(255, 255, 255, 0.5);
-    padding-top: 25px;
-    padding-left: 25px;
-    padding-bottom: 10px;
-    border-radius: 50px;
-    left: 5%; */
-/* display: flex;
-    justify-content: flex-start;
-    align-items: flex-start; */
-/* }
-*/
 
 #select-dropdown {
     margin: 10px;
@@ -271,9 +253,6 @@
     color:#69443C;
 }
 
-/* #results:hover {
-    color: #8FDDE7 !important;
-} */
 
 @media (min-width: 767px) {
     .tabs-container {
