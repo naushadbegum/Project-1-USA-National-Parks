@@ -46,7 +46,7 @@
 }
 
 .button-explore {
-    margin-left: 600px;
+    margin-left: 550px;
     /* position: absolute;
     z-index: 314460; */
     border: none;
@@ -109,6 +109,10 @@
     }
 }
 
+@media (min-width: 1024px) {
+    #intro-text {
+        gap: 200px;
+    }
 
 /* map page */
 
