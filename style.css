@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center;
     /* align-content: space-between; */
-    gap: 160px;
+    gap: 80px;
 }
 
 #intro-parks {
@@ -46,7 +46,7 @@
 }
 
 .button-explore {
-    margin-left: 800px;
+    margin-left: 520px;
     /* position: absolute;
     z-index: 314460; */
     border: none;
@@ -54,8 +54,8 @@
     color: inherit;
     background-color: transparent;
     cursor: pointer;
-    top: 60%;
-    left: 50%;
+    /* top: 10%;
+    left: 50%; */
 }
 
 .button-explore:focus {
@@ -69,7 +69,7 @@
 }
 
 .button-explore {
-    padding: 15px 100px;
+    padding: 10px 50px;
 }
 
 .button-explore {
@@ -271,6 +271,19 @@
     left: 10px;
     top: 10px;
     z-index: 314159;
+    background-color: #8FDDE7;
+    border-radius: 5px;
+}
+
+#campingGuideTab{
+    font-family:'Zen Antique Soft',serif;
+    margin-top: 5px;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    border-radius: 100px;
+    background-color: beige;
+
 }
 
 .campgroundsRadio {
@@ -282,7 +295,31 @@
 
 #textCampgrounds{
     font-family: 'Lato', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
+}
+
+.parkinglotsRadio {
+    accent-color: #8FDDE7;
+    cursor: pointer;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+#textParkinglots{
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
+}
+
+#textConvenienceStores{
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
+}
+
+.convenienceStoresRadio{
+    accent-color: #8FDDE7;
+    cursor: pointer;
+    height: 1.2rem;
+    width: 1.2rem;
 }
 
 /* Icons */
@@ -315,3 +352,30 @@
 .fa-solid fa-campground{
     font-size: 50px;
 }
+
+#caret-down{
+    color:#69443C;
+}
+
+.custom-popup .leaflet-popup-content-wrapper {
+    font-family: 'Zen Antique Soft', serif;
+    background:#2c3e50;
+    color:#fff;
+    font-size:16px;
+    line-height:24px;
+    overflow-y:scroll;
+    }
+/* .custom-popup .leaflet-popup-tip-container {
+        width:30px;
+        height:10px;
+        } */
+
+  /* .custom-popup .leaflet-popup-content-wrapper a {
+    color:rgba(255,255,255,0.5);
+    }
+
+  .custom-popup .leaflet-popup-tip {
+    border-left:15px solid transparent;
+    border-right:15px solid transparent;
+    border-top:15px solid #2c3e50;
+    } */

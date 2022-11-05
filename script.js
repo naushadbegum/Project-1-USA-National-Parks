@@ -88,12 +88,34 @@ window.addEventListener("DOMContentLoaded", async function () {
                     className: 'parkIcon'
                 });
                 let marker = L.marker([lat, lng], { icon: parkIcon }).addTo(parksClusterLayer);
-                marker.bindPopup(`<h1>${r.fullName}</h1><img class="imgIcon" src="${r.images[0].url}"/><h2>${r.addresses[0].line1}</h2><h2>${r.addresses[0].city}</h2><h2>${r.addresses[0].postalCode}</h2>`);
+                marker.bindPopup(`<h1>${r.fullName}</h1><img class="imgIcon" src="${r.images[0].url}"/><h2>Address:</h2><h2>${r.addresses[0].line1}</h2><h2>${r.addresses[0].city}</h2><h2>${r.addresses[0].postalCode}</h2>`);
 
                 // add to the search results
                 let resultElement = document.createElement("div");
                 resultElement.innerText = r.fullName;
                 resultElement.classList.add("search-result");
+
+                function makeUL(array) {
+                    // Create the list element:
+                    var list = document.createElement('ul');
+                
+                    for (var i = 0; i < array.length; i++) {
+                        // Create the list item:
+                        var item = document.createElement('li');
+                
+                        // Set its contents:
+                        item.appendChild(document.createTextNode(array[i]));
+                
+                        // Add it to the list:
+                        list.appendChild(item);
+                    }
+                
+                    // Finally, return the constructed list:
+                    return list;
+                }
+                
+                // Add the contents of options[0] to #foo:
+                document.getElementById('results').appendChild(makeUL(resultElement[0]));
 
                 // function validation(){
                 //     let v = document.querySelector("#results").value;
@@ -176,7 +198,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         })
         // create a checkbox for parkinglots
 
-        let checkboxParkinglotsElement = document.querySelector("#parkinglotsCheck");
+        let checkboxParkinglotsElement = document.querySelector("#parkinglotsRadio");
         checkboxParkinglotsElement.addEventListener("change", async function () {
             let selectedParkinglots = "";
             let stateCode = document.querySelector("#states-dropdown").value;
@@ -198,7 +220,7 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         
         // adding foursquare to search for supermarkets to buy essentials before going campsites
-        let checkbox = document.querySelector("#supermarketsCheck");
+        let checkbox = document.querySelector("#convenienceStoresRadio");
         checkbox.addEventListener('change', async function () {
             // console.log(response.data);
             // console.dir(checkbox);
