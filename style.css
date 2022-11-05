@@ -83,7 +83,7 @@
 }
 
 /* mobile friendly for intro page */
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
     #intro-text {
         gap: 120px;
     }
@@ -107,7 +107,7 @@
     .button-explore {
         margin-left: 40px;
     }
-}
+} */
 
 /* map page */
 
