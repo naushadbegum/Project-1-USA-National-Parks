@@ -36,9 +36,12 @@ The users of Adventure Awaits are mostly hikers, nature enthusiasts, roadtripper
 
 The color scheme chosen revolves around turquoise, dark blue and brown as it represents the sea and land respectively. It represents the theme of adventure and travelling in the sea and land.  It also captures the image of parks with natural sand formations and water.
 
+
 #### Fonts
 
+
 *Serif* is a font family used for apt giving the user the feeling of adventurous and exploration. *Sans-serif* was mainly used to ensure that the words are clear when read. 
+
 ---
 
 ## Features
