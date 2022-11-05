@@ -1,12 +1,17 @@
-# **Adventure Awaits!**
+# **Adventure Awaits...**
 
 ![Screenshots of Adventure Awaits's homepage](photos/mobile-first-screenshot.png)
 
 Link to demo : [Adventure Awaits...](https://naushadbegum.github.io/Project-1-USA-National-Parks/)
 
 ## Summary
-There are over 423 National Parks in the USA across 50 states. Nature enthusiats love visiting these places and stay overnight at the parks. Morever, roadtrippers and tourists often travel across different states to visit the parks. 
-Adventure Awaits is a web based software application that helps nature enthusiats, roadtrippers and tourits to plan their visit. Tourist usually visit the popular National Parks such as Grand Canyon at Arizona as there are more information about them. Our aim is to break the information barrier for all the National Parks in the USA and provide access to the parks, campgrounds, parking lots and convinience stores for the visitors. 
+There are over 423 National Parks in the USA across 50 states. Nature enthusiats love visiting these places and stay overnight at the parks. Moreover, roadtrippers and tourists often travel across different states to visit the parks. 
+
+Adventure Awaits is a web based software application that helps nature enthusiasts, roadtrippers and tourits to plan their visit. Tourist usually visit the popular National Parks such as Grand Canyon at Arizona as there are more information about them.
+
+Our aim is to break the information barrier for all the National Parks in the USA and provide access to the parks, campgrounds, parking lots and convinience stores for the visitors. 
+
+
 ---
 ## UI/UX
 ### Strategy
