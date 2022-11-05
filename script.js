@@ -5,25 +5,15 @@ window.addEventListener("DOMContentLoaded", async function () {
     function init() {
         let map = initMap();
 
-        // let campClusterLayer = L.layerGroup();
-        // campClusterLayer.addTo(map);
-
         let campMarkerClusterLayer = L.markerClusterGroup();
         campMarkerClusterLayer.addTo(map);
-
-        // let parkinglotsClusterLayer = L.layerGroup();
-        // parkinglotsClusterLayer.addTo(map);
 
         let parkinglotspMarkerClusterLayer = L.markerClusterGroup();
         parkinglotspMarkerClusterLayer.addTo(map);
 
-        // let supermarketClusterLayer = L.layerGroup();
-        // supermarketClusterLayer.addTo(map);
+        let convenienceStoresMarkerClusterLayer = L.markerClusterGroup();
+        convenienceStoresMarkerClusterLayer.addTo(map);
 
-        let supermarketMarkerClusterLayer = L.markerClusterGroup();
-        supermarketMarkerClusterLayer.addTo(map);
-        
-        // let amenities = L.layerGroup([campClusterLayer, parkinglotsClusterLayer, supermarketClusterLayer]);
 
         let osm = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -39,13 +29,11 @@ window.addEventListener("DOMContentLoaded", async function () {
         let overlayMaps = {
             "Campgrounds": campMarkerClusterLayer,
             "Parking Lots": parkinglotspMarkerClusterLayer,
-            "Convenience Stores": supermarketMarkerClusterLayer
+            "Convenience Stores": convenienceStoresMarkerClusterLayer
         };
     
         let layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-        // let searchResultLayer = L.layerGroup();
-        // searchResultLayer.addTo(map);
         let parksClusterLayer = L.markerClusterGroup(); // <-- only available because we included the marker cluster JS file
         parksClusterLayer.addTo(map);
         // mobile first 
@@ -61,12 +49,12 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         document.querySelector("#btnSearch").addEventListener("click", async function () {
 
-            parksClusterLayer.clearLayers(); // previous results gets deleted
+            parksClusterLayer.clearLayers(); 
             let query = document.querySelector("#searchTerms").value;
-            // alert(query);
+
             let stateCode = document.querySelector("#states-dropdown").value;
             let searchResults = await searchParks(stateCode, query);
-// console.log(searchResults);
+
             let searchResultElement = document.querySelector("#results");
             searchResultElement.innerHTML = "";
             // validation
@@ -97,15 +85,6 @@ window.addEventListener("DOMContentLoaded", async function () {
                 resultElement.classList.add("ul");
                 resultElement.classList.add("li");
 
-                // function validation(){
-                //     let v = document.querySelector("#results").value;
-                //     let text;
-                //     if (v == ""){
-                //         text = "Search results 0";
-                //         return false;
-                //     } 
-                // }
-                // doc
 
                 // flys and shows the name of the park
                 resultElement.addEventListener("click", function () {
@@ -199,7 +178,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         })
 
         
-        // adding foursquare to search for supermarkets to buy essentials before going campsites
+        // adding foursquare to search for convenience stores to buy essentials before going campsites
         let checkbox = document.querySelector("#convenienceStoresRadio");
         checkbox.addEventListener('change', async function () {
             // console.log(response.data);
@@ -208,23 +187,19 @@ window.addEventListener("DOMContentLoaded", async function () {
                 let boundaries = map.getBounds();
                 let center = boundaries.getCenter();
                 let latlng = center.lat + "," + center.lng;
-                let supermarketsResults = await search(latlng);
-                for (let each of supermarketsResults.results) {
+                let convenienceStoresResults = await search(latlng);
+                for (let each of convenienceStoresResults.results) {
                     // console.log(each);
                     let lat = each.geocodes.main.latitude;
                     let lng = each.geocodes.main.longitude;
-                    const supermarketIcon = L.divIcon({
+                    const convenienceStoresIcon = L.divIcon({
                         html: '<i class="fa-solid fa-bag-shopping"></i>',
                         iconSize: [40, 40],
                         iconAnchor: [20, 40],
-                        className: 'supermarketIcon'
+                        className: 'convenienceStoresIcon'
                     });
-                    // let redIcon = L.icon({
-                    //     iconUrl: ,
-                    //     iconSize: [38, 95], // size of the icon
-                    //     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-                    // });
-                    L.marker([lat, lng], { icon: supermarketIcon }).addTo(supermarketMarkerClusterLayer).bindPopup(`<h1>${each.name}<h1>`);
+
+                    L.marker([lat, lng], { icon: convenienceStoresIcon }).addTo(convenienceStoresMarkerClusterLayer).bindPopup(`<h1>${each.name}<h1>`);
                 }
 
             }
